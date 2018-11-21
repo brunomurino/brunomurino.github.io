@@ -1,0 +1,127 @@
+:root{
+	--main-light: #FFFAFA;
+	--main-light: #F4EED6;
+	--main-dark: #29446F;
+	--main-dark: #3b4a60;
+
+	--left-size: 12%;
+	--right-size: calc(100% - var(--left-size));
+	--right-margin: 10px;
+}
+
+* {
+	text-decoration: none;
+}
+
+html, body {
+	height: 100%;
+	background-color: var(--main-light);
+}
+
+.left {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: var(--left-size);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	background-color: var(--main-dark);
+}
+
+.left a:visited, .left * {
+	color: var(--main-light);
+}
+
+.right a:visited, .right * {
+	color: var(--main-dark);
+}
+
+
+
+header {
+	flex-grow: 1;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#buttonSideNav {
+	flex-grow: 1;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#lines {
+	margin: auto;
+	background-color: var(--main-dark);
+	text-align: center;
+	--burger-in: 5px;
+	--burger-out: 4px;
+	border-bottom: calc(2*var(--burger-out) + var(--burger-in)) double var(--main-light);
+	border-top: var(--burger-out) solid var(--main-light);
+	content: "";
+	height: var(--burger-in);
+	width: calc(6*var(--burger-in));
+}
+
+footer {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	text-align: center;
+}
+
+.right {
+/*	flex-grow: 9;*/
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100%;
+	margin: 0 var(--right-margin);
+	width: calc(var(--right-size) - 2*var(--right-margin));
+}
+
+.nav-head {
+	text-align: center;
+	font-size: 30px;
+	padding: 15px;
+}
+
+.nav-list {
+	height: 100%;
+	overflow: scroll;
+}
+
+.nav-list li{
+/*	height: 140px;*/
+	padding: 10px;
+}
+
+.info-button {
+	background-color: var(--main-dark);
+	color: var(--main-light);
+	cursor: pointer;
+	padding: 5px;
+	border: none;
+/*    text-align: left;*/
+/*    outline: none;*/
+	font-size: 15px;
+	transition: 0.2s;
+}
+
+.active, .info-button:hover {
+	opacity: 0.7;
+}
+
+.info {
+	padding: 10px;
+	background-color: var(--main-dark);
+	color: var(--main-light);
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+}
