@@ -8,32 +8,38 @@
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/index.css">
-	<link href="https://fonts.googleapis.com/css?family=Caveat|Courgette|Kaushan+Script|Marck+Script|Parisienne|Satisfy|Srisakdi|Tangerine" rel="stylesheet">
-	<script src="js/script.js" defer></script>
+	<script src="js/toggleMenu.js" defer></script>
 </head>
 <body>
 
 	<div class="main">
 		<header>
-<!--			<img src="img/IMG_20180714_124241.jpg" alt="Picture of me.">-->
+			<!-- <img src="img/IMG_20180714_124241.jpg" alt="Picture of me." height="100" width="100"> -->
 			<a href="index.html">Bruno Murino</a>
 		</header>
 
 		<div class="nav-wrapper">
 			<nav Id="sidenav" class="split" >
-				<a href="projects.html" class="menuHeader">Projects</a>
+
+				<a href="projects.html" class="menuHeader toggler selected">Projects</a>
 				<ul class="submenu">
 						<a href="#">test</a>
-					</ul>
-				<a href="deepdivemlmath.html" class="menuHeader">Deep Dive in ML Math</a>
-				<ul class="submenu">
-					<a href="#">test</a>
 				</ul>
-				<a href="resume.html" class="menuHeader">Résumé</a>
+
+				<a href="jsfun.html" class="menuHeader ">JavaScript fun!</a>
+
+				<a href="resume.html" class="menuHeader toggler selected">Résumé</a>
 				<ul class="submenu">
 					<a href="resume.html">View</a>
 					<a href="BrunoMurinoResume.pdf" download>Download PDF</a>
 				</ul>
+
+				<a href="resume.html" class="menuHeader toggler selected">Contact me</a>
+				<ul class="submenu">
+					<a href="#">Call me at +447898976564</a>
+					<a href="#">Send email to bfsmurino@gmail.com</a>
+				</ul>
+
 			</nav>
 		</div>
 		
