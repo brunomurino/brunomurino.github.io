@@ -30,6 +30,12 @@ a {
 	}
 }
 
+@media (min-width:1500px) {
+	:root {
+		--lateralmargin: 400px;
+	}
+}
+
 html, body {
 	height: 100%;
 	background-image: linear-gradient(to top right, var(--main-dark), var(--main-dark2) );
