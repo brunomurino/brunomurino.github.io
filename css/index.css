@@ -7,6 +7,11 @@
     --main-dark2: SeaGreen;
 }
 
+a {
+	text-decoration: none;
+	color: white;
+}
+
 div.main {
 	height: 100%;
 	width: 100%;
