@@ -39,8 +39,8 @@ header a {
 }
 
 #lines {
-	/* margin: auto; */
-	background-color: var(--main-dark2);
+    /* background-color: var(--main-dark2); */
+    background-color: rgba(0, 0, 0, 0);
 	text-align: center;
 	--burger-in: 5px;
 	--burger-out: 4px;
@@ -48,10 +48,10 @@ header a {
 	border-top: var(--burger-out) solid var(--main-dark);
 	content: "";
 	height: var(--burger-in);
-	width: calc(6*var(--burger-in));
+    width: calc(6*var(--burger-in));
 }
 
-.content {
+.content-wrapper {
     height: calc(100% - 50px);
 }
 

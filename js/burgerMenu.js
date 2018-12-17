@@ -1,5 +1,5 @@
 var toggler = document.querySelector("#lines")
-var contentPages = document.querySelectorAll(".content")
+var contentPages = document.querySelectorAll(".content-wrapper")
 
 toggler.addEventListener("click", function (){
         
