@@ -7,20 +7,44 @@
     --main-dark2: SeaGreen;
 }
 
+a {
+	text-decoration: none;
+	color: white;
+}
+
+@media (min-width:10px) {
+	:root {
+		--lateralmargin: 0px;
+	}
+}
+
+@media (min-width:450px) {
+	:root {
+		--lateralmargin: 30px;
+	}
+}
+
+@media (min-width:1000px) {
+	:root {
+		--lateralmargin: 200px;
+	}
+}
+
+html, body {
+	height: 100%;
+	background-image: linear-gradient(to top right, var(--main-dark), var(--main-dark2) );
+}
+
 div.main {
-height: 100%;
-width: 100%;
-position: fixed;
-z-index: 1;
-top: 0;
-overflow-x: hidden;
-background-color: var(--main-dark);
-background-image: linear-gradient(to top right, var(--main-dark), var(--main-dark2) );
-/* display: flex;
-flex-direction: column;
-justify-content: space-around; */
-text-align: center;
-font-family:  monospace;
+	height: 100%;
+	width: calc(100% - 2*var(--lateralmargin));
+	margin: 0 var(--lateralmargin);
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	text-align: center;
+	font-family:  monospace;
 }
 
 header {
