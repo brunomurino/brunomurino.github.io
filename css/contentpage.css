@@ -53,14 +53,30 @@ div.main {
 	font-family:  monospace;
 }
 
+:root {
+    --headerHeight: 30px;
+    --headerMargin: 10px;
+}
+
+@media (min-height: 800px) {
+    :root {
+        --headerHeight: 40px;
+        --headerMargin: 20px;
+    }
+}
+
 header {
     top: 0;
-    height: 30px;
-    margin: 10px 0;
+    height: var(--headerHeight);
+    margin: var(--headerMargin) 0;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.content-wrapper {
+    height: calc(100% - var(--headerHeight) - 2*var(--headerMargin));
 }
 
 header a {
@@ -79,10 +95,6 @@ header a {
 	content: "";
 	height: var(--burger-in);
     width: calc(6*var(--burger-in));
-}
-
-.content-wrapper {
-    height: calc(100% - 50px);
 }
 
 .menu {
