@@ -7,83 +7,74 @@
 <!--		<link rel="icon" href="images/irelandgrungeflag.jpeg">-->
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!--	<link rel="stylesheet" href="css/main.css">-->
-	<link rel="stylesheet" href="css/projects.css">
-	<style>
-
-</style>
+	<!-- <link rel="stylesheet" href="css/index.css"> -->
+	<link rel="stylesheet" href="css/jsfun.css">
+	<script src="js/toggleMenu.js" defer></script>
+	<script src="js/burgerMenu.js" defer></script>
 </head>
 <body>
 
-	<div class='left'>
+	<div class="main">
+
 		<header>
-<!--			<img src="img/IMG_20180714_124241.jpg" alt="Picture of me.">-->
-			<a href="index.html">BM</a>
+			<a href="index.html"> Bruno Murino</a>
+			<div id="lines"></div>
 		</header>
 		
-		<div id="buttonSideNav">
-			<div type="button" id="lines" onclick="toggleSideNav()"></div>
+		<div class="content">
+
+			Hello!
+
 		</div>
 
-		
-		<footer>
-			<a href="#" class="fa fa-github"></a>
-			<a href="#" class="fa fa-linkedin-square"></a>
-			<a href="#" class="fa fa-twitter"></a>
-		</footer>
-	</div>
-	
-	<div class='right'>
-		
-		<div class="nav-head">Deep Dive in ML Math</div>
-		
-		<ul class="nav-list">
-			
-			<li>
-				<a>Post 1</a>
-				<button class="info-button" >Summary</button>
-				<p class="info" style="display: none">
-					bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-				</p>
-			</li>
-			
-			<li>
-				<a>Post 2</a>
-				<button class="info-button">Summary</button>
-				<div class="info" style="display: none">
-					bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-				</div>
-			</li>
-			
-		</ul>
-	
-	</div>
-	
-<script>
-	
-	function toggleSideNav() {
-		if (document.getElementById('sidenav').style.display === "none") {
-			document.getElementById('sidenav').style.display = "flex"
-		} else
-		document.getElementById('sidenav').style.display = "none"
-	}
-	
-var acc = document.getElementsByClassName("info-button");
-var i;
+		<div class="content menu hide">
 
-	for (i = 0; i < acc.length; i++) {
-		acc[i].addEventListener("click", function() {
-			this.classList.toggle("active");
-			var panel = this.nextElementSibling;
-			if (panel.style.display == "block"){
-				panel.style.display = "none";
-			} else {
-				panel.style.display = "block";
-			} 
-		});
-	}
-	
-</script>	
+			<div class="nav-wrapper">
+				<nav Id="sidenav" class="split" >
+
+					<a href="projects.html" class="menuHeader toggler selected">Projects</a>
+					<ul class="submenu">
+						<li class="submenuitem">
+							<a href="#">test</a>
+						</li>
+					</ul>
+
+					<a href="jsfun.html" class="menuHeader ">JavaScript fun!</a>
+
+					<a href="#" class="menuHeader toggler selected">Résumé</a>
+					<ul class="submenu">
+						<li class="submenuitem">
+							<a href="resume.html">View</a>
+						</li>
+						<li class="submenuitem">
+							<a href="BrunoMurinoResume.pdf" download  >Download PDF</a>
+						</li>
+					</ul>
+
+					<div class="menuHeader toggler selected">Contact me</div>
+					<ul class="submenu">
+						<li class="submenuitem">
+							<p>+447898976564</p>
+						</li>
+						<li class="submenuitem">
+							<p>bfsmurino@gmail.com</p>
+						</li>
+					</ul>
+
+				</nav>
+			</div>
+			
+			<div class="footer-wrapper">
+					<footer>
+						<a href="https://github.com/brunomurino" class="fa fa-github"></a>
+						<a href="https://www.linkedin.com/in/brunomurino/" class="fa fa-linkedin-square"></a>
+						<!-- <a href="#" class="fa fa-twitter"></a> -->
+					</footer>
+				</div>
+
+		</div>
+		
+	</div>	
 	
 </body>
 </html>
