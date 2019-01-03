@@ -4,7 +4,7 @@
     /* --main-light: #F4EED6; */
     --main-dark: #29446F;
     /* --main-dark: #3b4a60; */
-	--main-dark2: SeaGreen;
+	--main-dark2: rgb(196, 131, 35);
 }
 
 a {
