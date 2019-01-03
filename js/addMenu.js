@@ -13,7 +13,7 @@ var menuHTML = `
                 <a href="jsfun.html">JavaScript fun!</a>
             </li>
             <li class="submenuitem">
-                <a href="BrunoMurinoResume.pdf" download  >Download  CV</a>
+                <a href="cv.html">CV</a>
             </li>
         </ul>
 

@@ -1,0 +1,31 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin: 0 30px;
+}
+
+.content p {
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.3);
+    line-height: 1.5em;
+}
+
+/* .download-btn {
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.8);
+    line-height: 1.5em;
+} */
+
+.cv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    height: calc(100%);
+}

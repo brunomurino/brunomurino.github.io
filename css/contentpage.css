@@ -1,12 +1,3 @@
-:root{
-    --main-light: #D0E2EC;
-    /* --main-light: #FFFAFA; */
-    /* --main-light: #F4EED6; */
-    --main-dark: #29446F;
-    /* --main-dark: #3b4a60; */
-    --main-dark2: SeaGreen;
-}
-
 a {
 	text-decoration: none;
 	color: white;
@@ -32,7 +23,7 @@ a {
 
 @media (min-width:1500px) {
 	:root {
-		--lateralmargin: 400px;
+		--lateralmargin: 300px;
 	}
 }
 
