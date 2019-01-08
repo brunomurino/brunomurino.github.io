@@ -1,4 +1,5 @@
 var gameArea = document.querySelector("#gameArea")
+var deadlyAreas = document.querySelector("#deadlyRegions")
 var gameUI = document.querySelector("#gameUI")
 var stageNumber = document.querySelector("#stageNumber")
 var lifeCounter = document.querySelector("#lifeCounter")
@@ -6,19 +7,19 @@ var lifeDrawing = document.querySelector("#lifeDrawing")
 var mainChar = document.querySelector("#mainChar")
 var finishLine = document.querySelector("#finishLine")
 
-let numLifes = 5
+var numLifes
+var currentStage
+var initStage = {}
+var numDeadlyRegions = {}
+var deadlyRegions = {}
 
-function updateLifeCounter() {
+function updateUILife(numLifes) {
+
+    let lifeDrawings = {}
+
     lifeCounter.innerHTML = `Lifes: ${numLifes}`
-}
-
-let lifeDrawings = {}
-
-function updateLifeDrawings() {
-
-    while (lifeDrawing.firstChild) {
-        lifeDrawing.removeChild(lifeDrawing.firstChild);
-    }
+    lifeCounter.style.display = "none" // Comment this line to show the numerical life counter
+    lifeDrawing.innerHTML = ""
 
     for (i=1; i<=numLifes; i++) {
         lifeDrawings[i] = document.createElement("li")
@@ -27,19 +28,17 @@ function updateLifeDrawings() {
     }
 }
 
-let currentStage = 1
-
-function updateStageNumber() {
+function updateUIStage(currentStage) {
     stageNumber.innerHTML = `Stage: ${currentStage}`
 }
 
-var numDeadlyRegions = 6
-
-var deadlyRegions = {}
-for (i=1; i<=numDeadlyRegions; i++) {
-    deadlyRegions[i] = document.createElement("div")
-    deadlyRegions[i].classList.add("deadlyRegion")
-    gameArea.appendChild(deadlyRegions[i])
+function initDeadlyRegion(numRegions) {
+    deadlyAreas.innerHTML = ""
+    for (i=1; i <= numRegions; i++) {
+        deadlyRegions[i] = document.createElement("div")
+        deadlyRegions[i].classList.add("deadlyRegion")
+        deadlyAreas.appendChild(deadlyRegions[i])
+    }
 }
 
 function initElement (element, h, w, posT, posL) {
@@ -106,28 +105,32 @@ function getKeyAndMove(event){
     }
 }
 
-function initAll(){
+function hideDeadlyRegions(currentStage) {
+    for (i=1; i<=numDeadlyRegions[currentStage]; i++) {
+        deadlyRegions[i].classList.remove("showDeadlyRegion")
+    }
+}
+
+function showDeadlyRegions(currentStage) {
+    for (i=1; i<=numDeadlyRegions[currentStage]; i++) {
+        deadlyRegions[i].classList.add("showDeadlyRegion")
+    }
+}
+
+function initAll(currentStage, numLifes){
     var isAlive = true
     var isInFinishLine = false
 
-    updateStageNumber()
-    updateLifeCounter()
-    updateLifeDrawings()
+    updateUIStage(currentStage)
+    updateUILife(numLifes)
 
     initElement(mainChar, 20, 20, 0, 0)
     initElement(finishLine, 20, 20, 680, 680)
-    initElement(deadlyRegions[1], 150, 150, 0, 180)
-    initElement(deadlyRegions[2], 200, 200, 500, 230)
-    initElement(deadlyRegions[3], 250, 100, 150, 400)
-    initElement(deadlyRegions[4], 100, 150, 200, 0)
-    initElement(deadlyRegions[5], 200, 150, 500, 520)
-    initElement(deadlyRegions[6], 200, 70, 200, 200)
 
-    for (i=1; i<=numDeadlyRegions; i++) {
-        deadlyRegions[i].classList.remove("showDeadlyRegion")
-    }
+    initDeadlyRegion(numDeadlyRegions[currentStage])
+    initStage[currentStage]()
 
-    console.log("Stage 1 initialized.")
+    console.log(`Stage ${currentStage} initialized.`)
 }
 
 function checkOverlap (rect1, rect2){
@@ -183,33 +186,76 @@ function gameOver(){
     if (numLifes == 0){
         alert("Game Over")
         numLifes = 5
-        updateLifeCounter()
-        updateLifeDrawings()
-        initAll()
+        initAll(currentStage, numLifes)
     } else {
         alert(`You lost a life. Only ${numLifes} left.`)
-        updateLifeCounter()
-        updateLifeDrawings()
-        initAll()
+        initAll(currentStage, numLifes)
     }
 }
 
 function stageComplete(){
+
     initElement(finishLine, 0, 0, 0, 0)
+
     window.removeEventListener('keydown', getKeyAndMove)
-    for (i=1; i<=numDeadlyRegions; i++) {
-        deadlyRegions[i].classList.add("showDeadlyRegion")
-    }
+
+    showDeadlyRegions(currentStage)
+
     setTimeout( function(){
-        alert("Congratulations! You beat this stage! Get ready for the next!")
+
+        currentStage++
         numLifes = 5
-        updateLifeCounter()
-        updateLifeDrawings()
-        initAll() 
+
+        if (typeof numDeadlyRegions[currentStage] == "undefined"){
+            alert("Congratulations! You beat the game!!!!!")
+            currentStage = 1
+        } else {
+            alert("Congratulations! You beat this stage! Get ready for the next!")
+        }
+
+        initAll(currentStage, numLifes)
+
     }, 100)  
 }
 
-initAll()
+// ############################# DEFINITION OF THE LEVELS
+
+numDeadlyRegions[1] = 6
+initStage[1] = function (){
+
+    initElement(deadlyRegions[1], 150, 150, 0, 180)
+    initElement(deadlyRegions[2], 200, 200, 500, 230)
+    initElement(deadlyRegions[3], 250, 100, 150, 400)
+    initElement(deadlyRegions[4], 100, 150, 200, 0)
+    initElement(deadlyRegions[5], 200, 150, 500, 520)
+    initElement(deadlyRegions[6], 200, 70, 200, 200)
+
+    hideDeadlyRegions(1)
+}
+
+numDeadlyRegions[2] = 3
+initStage[2] = function (){
+
+    initElement(deadlyRegions[1], 150, 150, 0, 180)
+    initElement(deadlyRegions[2], 200, 200, 500, 230)
+    initElement(deadlyRegions[3], 250, 100, 150, 400)
+
+    hideDeadlyRegions(2)
+}
+
+numDeadlyRegions[3] = 1
+initStage[3] = function (){
+
+    initElement(deadlyRegions[1], 660, 660, 20, 20)
+
+    hideDeadlyRegions(3)
+}
+
+// ############################# RUNNING THE GAME
+
+numLifes = 5
+currentStage = 1
+initAll(currentStage, numLifes)
 
 setInterval(function (){
 
