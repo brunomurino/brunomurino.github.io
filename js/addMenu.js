@@ -10,7 +10,7 @@ var menuHTML = `
                 <a href="projects.html">View Projects</a>
             </li>
             <li class="submenuitem">
-                <a href="jsfun.html">JavaScript fun!</a>
+                <a href="/gameJS/index.html">JavaScript fun!</a>
             </li>
             <li class="submenuitem">
                 <a href="cv.html">CV</a>

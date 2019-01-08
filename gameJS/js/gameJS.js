@@ -1,42 +1,46 @@
-var body = document.querySelector("body")
-
-gameArea = document.createElement("main")
-gameArea.id = "gameArea"
-body.appendChild(gameArea)
-
-gameUI = document.createElement("div")
-gameUI.id = "gameUI"
-gameUI.setAttribute("style",`
-position: absolute;
-height: 900px;
-width: 80px;
-align-self: center;
-background-color: white;
-left: 20px;
-`)
-body.appendChild(gameUI)
+var gameArea = document.querySelector("#gameArea")
+var gameUI = document.querySelector("#gameUI")
+var stageNumber = document.querySelector("#stageNumber")
+var lifeCounter = document.querySelector("#lifeCounter")
+var lifeDrawing = document.querySelector("#lifeDrawing")
+var mainChar = document.querySelector("#mainChar")
+var finishLine = document.querySelector("#finishLine")
 
 let numLifes = 5
 
-gameUI.innerHTML = `Lifes: ${numLifes}`
+function updateLifeCounter() {
+    lifeCounter.innerHTML = `Lifes: ${numLifes}`
+}
 
+let lifeDrawings = {}
 
+function updateLifeDrawings() {
 
+    while (lifeDrawing.firstChild) {
+        lifeDrawing.removeChild(lifeDrawing.firstChild);
+    }
+
+    for (i=1; i<=numLifes; i++) {
+        lifeDrawings[i] = document.createElement("li")
+        lifeDrawings[i].classList.add("lifeDraw")
+        lifeDrawing.appendChild(lifeDrawings[i])
+    }
+}
+
+let currentStage = 1
+
+function updateStageNumber() {
+    stageNumber.innerHTML = `Stage: ${currentStage}`
+}
 
 var numDeadlyRegions = 6
 
 var deadlyRegions = {}
-
 for (i=1; i<=numDeadlyRegions; i++) {
     deadlyRegions[i] = document.createElement("div")
     deadlyRegions[i].classList.add("deadlyRegion")
     gameArea.appendChild(deadlyRegions[i])
 }
-
-var mainChar = document.createElement("div")
-mainChar.id = "mainChar"
-gameArea.appendChild(mainChar)
-
 
 function initElement (element, h, w, posT, posL) {
     element.style.height = h + "px"
@@ -44,6 +48,7 @@ function initElement (element, h, w, posT, posL) {
     element.style.top = posT + "px"
     element.style.left = posL + "px"
 }
+
 var mainCharHeight = 20
 var mainCharWidth = 20
 var pageHeight = window.innerHeight
@@ -103,29 +108,48 @@ function getKeyAndMove(event){
 
 function initAll(){
     var isAlive = true
+    var isInFinishLine = false
+
+    updateStageNumber()
+    updateLifeCounter()
+    updateLifeDrawings()
+
     initElement(mainChar, 20, 20, 0, 0)
-    initElement(deadlyRegions[1], 150, 150, 100, 180)
-    initElement(deadlyRegions[2], 200, 200, 600, 230)
-    initElement(deadlyRegions[3], 150, 150, 200, 630)
-    initElement(deadlyRegions[4], 200, 250, 350, 0)
-    initElement(deadlyRegions[5], 230, 300, 670, 570)
-    initElement(deadlyRegions[6], 130, 70, 400, 500)
-    console.log("Position initialized")
+    initElement(finishLine, 20, 20, 680, 680)
+    initElement(deadlyRegions[1], 150, 150, 0, 180)
+    initElement(deadlyRegions[2], 200, 200, 500, 230)
+    initElement(deadlyRegions[3], 250, 100, 150, 400)
+    initElement(deadlyRegions[4], 100, 150, 200, 0)
+    initElement(deadlyRegions[5], 200, 150, 500, 520)
+    initElement(deadlyRegions[6], 200, 70, 200, 200)
+
+    for (i=1; i<=numDeadlyRegions; i++) {
+        deadlyRegions[i].classList.remove("showDeadlyRegion")
+    }
+
+    console.log("Stage 1 initialized.")
+}
+
+function checkOverlap (rect1, rect2){
+    let overlap = !(
+        rect1.right <= rect2.left || 
+        rect1.left >= rect2.right || 
+        rect1.bottom <= rect2.top || 
+        rect1.top >= rect2.bottom
+        )
+    return overlap
 }
 
 function checkIfOnDeadlyRegion (me, regions){
 
     let meRect = me.getBoundingClientRect()
 
-    for (i=1; i <= numDeadlyRegions; i++){
+    for (i=1; i <= Object.keys(regions).length; i++){
         
         let region = regions[i]  
         let regRect = region.getBoundingClientRect()
-        let overlap = !(meRect.right <= regRect.left || 
-            meRect.left >= regRect.right || 
-            meRect.bottom <= regRect.top || 
-            meRect.top >= regRect.bottom)
-        if (overlap) {
+        
+        if (checkOverlap(meRect, regRect)) {
             return true
         }
     }
@@ -136,13 +160,7 @@ function checkIfInside (me, area) {
     let meRect = me.getBoundingClientRect()
     let areaRect = area.getBoundingClientRect()
 
-    let inside = !(meRect.right <= areaRect.left || 
-        meRect.left >= areaRect.right || 
-        meRect.bottom <= areaRect.top || 
-        meRect.top >= areaRect.bottom)
-
-    return inside
-
+    return checkOverlap(meRect, areaRect)
 }
 
 function checkIfAlive(){
@@ -153,18 +171,42 @@ function checkIfAlive(){
     return true
 }
 
+function checkIfInFinishLine(){
+    let meRect = mainChar.getBoundingClientRect()
+    let flRect = finishLine.getBoundingClientRect()
+
+    return checkOverlap(meRect,flRect)
+}
+
 function gameOver(){
     numLifes--
     if (numLifes == 0){
         alert("Game Over")
         numLifes = 5
-        gameUI.innerHTML = `Lifes: ${numLifes}`
+        updateLifeCounter()
+        updateLifeDrawings()
         initAll()
     } else {
         alert(`You lost a life. Only ${numLifes} left.`)
-        gameUI.innerHTML = `Lifes: ${numLifes}`
+        updateLifeCounter()
+        updateLifeDrawings()
         initAll()
     }
+}
+
+function stageComplete(){
+    initElement(finishLine, 0, 0, 0, 0)
+    window.removeEventListener('keydown', getKeyAndMove)
+    for (i=1; i<=numDeadlyRegions; i++) {
+        deadlyRegions[i].classList.add("showDeadlyRegion")
+    }
+    setTimeout( function(){
+        alert("Congratulations! You beat this stage! Get ready for the next!")
+        numLifes = 5
+        updateLifeCounter()
+        updateLifeDrawings()
+        initAll() 
+    }, 100)  
 }
 
 initAll()
@@ -173,10 +215,14 @@ setInterval(function (){
 
     window.addEventListener('keydown', getKeyAndMove)
     isAlive = checkIfAlive()
-    isInside = checkIfInside(mainChar, gameArea)
+    isInFinishLine = checkIfInFinishLine()
+
+    if (isInFinishLine) {
+        stageComplete()
+    }
 
     if (!isAlive) {
-        setTimeout(gameOver(), 10) 
+        gameOver()
     }
 
 }, 10)
