@@ -11,10 +11,15 @@ html, body {
 
 #gameArea {
     position: absolute;
-    background-color: rgba(0,0,139,0.3);
+    background-color: rgba(45, 134, 207, 0.3);
     height: 700px;
     width: 700px;
     align-self: center;
+    border-radius: 2px;
+    box-shadow: 
+        0 0 5px 0 white,
+        0 0 20px 0 white,
+        0 0 30px 0 white;
 }
 
 #gameUI {
@@ -31,15 +36,76 @@ html, body {
     align-items: center;
 }
 
+#gameTitle {
+    --gametitlecolor: lightgreen;
+    font-size: 50px;
+    color: white;
+    text-shadow: 
+        0 0 5px white,
+        0 0 20px var(--gametitlecolor),
+        0 0 30px var(--gametitlecolor),
+        0 0 40px var(--gametitlecolor),
+        0 0 55px var(--gametitlecolor),
+        0 0 75px var(--gametitlecolor);
+}
+
+#levelNumber {
+    font-size: xx-large;
+    color: white; 
+    text-shadow: 
+        0 0 5px white,
+        0 0 10px white,
+        0 0 20px rgb(143,252,255),
+        0 0 30px rgb(143,252,255),
+        0 0 40px rgb(143,252,255),
+        0 0 55px rgb(143,252,255), 
+        0 0 75px rgb(143,252,255);
+}
+
+#markerCounter {
+    /* --markercountercolor: rgb(255,215,0); */
+    --markercountercolor: #ff0080;
+    font-size: xx-large;
+    color:  white;
+    text-shadow: 
+        0 0 5px white,
+        0 0 10px white,
+        0 0 20px var(--markercountercolor),
+        0 0 30px var(--markercountercolor),
+        0 0 40px var(--markercountercolor),
+        0 0 55px var(--markercountercolor), 
+        0 0 75px var(--markercountercolor);
+}
+
 #mainChar {
+    z-index: 1;
     position: absolute;
     background-color: white;
-    z-index: 1;
+    border-radius: 1px;
+    /* box-shadow: 
+        0 0 5px 0 rgb(143,252,255),
+        0 0 10px 0 rgb(143,252,255); */
+}
+
+.safePathMarker {
+    position: absolute;
+    background-color: rgba(204, 51, 204,1);
+    border-radius: 2px;
+    box-shadow: 
+        0 0 5px 0 white,
+        0 0 10px 0 rgb(204, 51, 204);
 }
 
 #finishLine {
     position: absolute;
     background-color: coral;
+    border-radius: 1px;
+    box-shadow: 0 0 5px 0 black;
+    /* box-shadow: 
+        0 0 5px 0 white,
+        0 0 10px 0 white,
+        0 0 20px 0 rgb(143,252,255),
+        0 0 30px 0 rgb(143,252,255); */
 }
 
 .deadlyRegion {
@@ -48,44 +114,56 @@ html, body {
 }
 
 .showDeadlyRegion {
-    background-color: rgba(173, 255, 47, 0.3);
+    background-color: rgba(173, 255, 47, 0.8);
+    box-shadow: 
+        0 0 5px 0 white,
+        0 0 10px 0 white,
+        0 0 15px 0 white,
+        0 0 20px 0 rgb(173, 255, 47),
+        0 0 30px 0 rgb(173, 255, 47);
 }
 
 #lifeDrawing {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between; */
     width: 175px;
     border-style: solid;
-    border-width: 2px;
+    border-width: 3px;
     border-color: white;
     padding: 5px;
     border-radius: 10px;
+    box-shadow: 
+        0 0 5px 0 white,
+        0 0 10px 0 white,
+        0 0 20px 0 rgb(143,252,255),
+        0 0 30px 0 rgb(143,252,255);
 }
 
 
 :root {
     --heart-size: 15px;
 }
-.lifeDraw {
+
+.lifeDraw, .lifeDraw:after, .lifeDraw:before {
     background-color: red;
     height: var(--heart-size);
-    transform: rotate(45deg);
     width: var(--heart-size);
+}
+
+.lifeDraw {
+    transform: rotate(45deg);
     margin: 10px;
     display: inline-block;
     vertical-align: middle;
 }
 
 .lifeDraw:before, .lifeDraw:after {
-  content: "";
-  background-color: red;
-  border-radius: 50%;
-  height: var(--heart-size);
-  position: absolute;
-  width: var(--heart-size);
-  top: 0;
-  left: calc( -1 * var(--heart-size)/2 );
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+}
+
+.lifeDraw:after {
+    top: 0;
+    left: calc( -1 * var(--heart-size)/2 );
 }
 
 .lifeDraw:before {

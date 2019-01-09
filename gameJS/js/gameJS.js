@@ -1,17 +1,22 @@
 var gameArea = document.querySelector("#gameArea")
 var deadlyAreas = document.querySelector("#deadlyRegions")
 var gameUI = document.querySelector("#gameUI")
-var stageNumber = document.querySelector("#stageNumber")
+var levelNumber = document.querySelector("#levelNumber")
+var markerCounter = document.querySelector("#markerCounter")
 var lifeCounter = document.querySelector("#lifeCounter")
 var lifeDrawing = document.querySelector("#lifeDrawing")
 var mainChar = document.querySelector("#mainChar")
 var finishLine = document.querySelector("#finishLine")
+var safePathMarkers = document.querySelector("#safePathMarkers")
 
 var numLifes
-var currentStage
-var initStage = {}
+var currentLevel
+var initLevel = {}
 var numDeadlyRegions = {}
 var deadlyRegions = {}
+var maxSafePathMarkers = 3
+var usedSafePathMarkers
+var safePathMarker = {}
 
 function updateUILife(numLifes) {
 
@@ -28,8 +33,33 @@ function updateUILife(numLifes) {
     }
 }
 
-function updateUIStage(currentStage) {
-    stageNumber.innerHTML = `Stage: ${currentStage}`
+function updateUILevel(currentLevel) {
+    levelNumber.innerHTML = `Level: ${currentLevel}`
+}
+
+function updateUIMarkers(usedSafePathMarkers) {
+    let markersLeft = maxSafePathMarkers - usedSafePathMarkers
+    markerCounter.innerHTML = `Markers: ${markersLeft}`
+}
+
+function initSafePathMarkers (){
+    safePathMarkers.innerHTML = ""
+    usedSafePathMarkers = 0
+    for (i=1; i <= maxSafePathMarkers; i++){
+        safePathMarker[i] = document.createElement("div")
+        safePathMarker[i].classList.add("safePathMarker")
+        safePathMarkers.appendChild(safePathMarker[i])
+    }
+}
+
+function insertSafePathMarker(usedSafePathMarkers, mainChar) {
+
+    let top = parseInt(mainChar.style.top)
+    let left = parseInt(mainChar.style.left)
+
+    console.log(`Inserted marker at ${top} and ${left}.`)
+
+    initElement(safePathMarker[usedSafePathMarkers], 20, 20, top, left) 
 }
 
 function initDeadlyRegion(numRegions) {
@@ -47,13 +77,6 @@ function initElement (element, h, w, posT, posL) {
     element.style.top = posT + "px"
     element.style.left = posL + "px"
 }
-
-var mainCharHeight = 20
-var mainCharWidth = 20
-var pageHeight = window.innerHeight
-var pageWidth = window.innerWidth
-mainCharInitPosT = pageHeight/2 - mainCharHeight/2
-mainCharInitPosL = pageWidth/2 - mainCharWidth/2
 
 function moveLeft(speed, keepInside) {
     mainChar.style.left = parseInt(mainChar.style.left)-speed +'px'
@@ -83,7 +106,7 @@ function moveDown (speed, keepInside) {
     }
 }
 
-function getKeyAndMove(event){		
+function getKeyAndMove(event){
     var speed = 20		
     switch(event.keyCode){
         case 65:
@@ -102,35 +125,47 @@ function getKeyAndMove(event){
         case 40: //down arrow key
             moveDown(speed, true)
             break
+        case 32:
+            if (usedSafePathMarkers < 3) {
+                usedSafePathMarkers++
+                insertSafePathMarker(usedSafePathMarkers, mainChar)
+                updateUIMarkers(usedSafePathMarkers)
+            } else {
+                alert("You already used all the markers.")
+            }
+            
+            break
     }
 }
 
-function hideDeadlyRegions(currentStage) {
-    for (i=1; i<=numDeadlyRegions[currentStage]; i++) {
+function hideDeadlyRegions(currentLevel) {
+    for (i=1; i<=numDeadlyRegions[currentLevel]; i++) {
         deadlyRegions[i].classList.remove("showDeadlyRegion")
     }
 }
 
-function showDeadlyRegions(currentStage) {
-    for (i=1; i<=numDeadlyRegions[currentStage]; i++) {
+function showDeadlyRegions(currentLevel) {
+    for (i=1; i<=numDeadlyRegions[currentLevel]; i++) {
         deadlyRegions[i].classList.add("showDeadlyRegion")
     }
 }
 
-function initAll(currentStage, numLifes){
+function initAll(currentLevel, numLifes){
     var isAlive = true
     var isInFinishLine = false
 
-    updateUIStage(currentStage)
+    updateUILevel(currentLevel)
     updateUILife(numLifes)
+    updateUIMarkers(usedSafePathMarkers)
 
     initElement(mainChar, 20, 20, 0, 0)
     initElement(finishLine, 20, 20, 680, 680)
 
-    initDeadlyRegion(numDeadlyRegions[currentStage])
-    initStage[currentStage]()
+    initDeadlyRegion(numDeadlyRegions[currentLevel])
 
-    console.log(`Stage ${currentStage} initialized.`)
+    initLevel[currentLevel]()
+
+    console.log(`Level ${currentLevel} initialized.`)
 }
 
 function checkOverlap (rect1, rect2){
@@ -181,60 +216,69 @@ function checkIfInFinishLine(){
     return checkOverlap(meRect,flRect)
 }
 
+function resetSafePathMarkers(){
+    usedSafePathMarkers = 0
+    for (i=1; i <= maxSafePathMarkers; i++){
+        initElement(safePathMarker[i], 0,0,0,0)
+    }
+}
+
 function gameOver(){
     numLifes--
     if (numLifes == 0){
         alert("Game Over")
         numLifes = 5
-        initAll(currentStage, numLifes)
+        initSafePathMarkers()
+        initAll(currentLevel, numLifes)
     } else {
         alert(`You lost a life. Only ${numLifes} left.`)
-        initAll(currentStage, numLifes)
+        initAll(currentLevel, numLifes)
     }
 }
 
-function stageComplete(){
+function levelComplete(){
 
     initElement(finishLine, 0, 0, 0, 0)
 
     window.removeEventListener('keydown', getKeyAndMove)
 
-    showDeadlyRegions(currentStage)
+    showDeadlyRegions(currentLevel)
 
     setTimeout( function(){
 
-        currentStage++
+        currentLevel++
+        initSafePathMarkers()
         numLifes = 5
 
-        if (typeof numDeadlyRegions[currentStage] == "undefined"){
+        if (typeof numDeadlyRegions[currentLevel] == "undefined"){
             alert("Congratulations! You beat the game!!!!!")
-            currentStage = 1
+            currentLevel = 1
         } else {
-            alert("Congratulations! You beat this stage! Get ready for the next!")
+            alert("Congratulations! You beat this level! Get ready for the next!")
         }
 
-        initAll(currentStage, numLifes)
+        initAll(currentLevel, numLifes)
 
     }, 100)  
 }
 
-// ############################# DEFINITION OF THE LEVELS
+// ################################################################# DEFINITION OF THE LEVELS
 
 numDeadlyRegions[1] = 6
-initStage[1] = function (){
+initLevel[1] = function (){
 
     initElement(deadlyRegions[1], 150, 150, 0, 180)
     initElement(deadlyRegions[2], 200, 200, 500, 230)
     initElement(deadlyRegions[3], 250, 100, 150, 400)
     initElement(deadlyRegions[4], 100, 150, 200, 0)
-    initElement(deadlyRegions[5], 200, 150, 500, 520)
+    initElement(deadlyRegions[5], 200, 160, 500, 520)
     initElement(deadlyRegions[6], 200, 70, 200, 200)
 
     hideDeadlyRegions(1)
 }
 
 numDeadlyRegions[2] = 3
-initStage[2] = function (){
+initLevel[2] = function (){
 
     initElement(deadlyRegions[1], 150, 150, 0, 180)
     initElement(deadlyRegions[2], 200, 200, 500, 230)
@@ -244,18 +288,20 @@ initStage[2] = function (){
 }
 
 numDeadlyRegions[3] = 1
-initStage[3] = function (){
+initLevel[3] = function (){
 
     initElement(deadlyRegions[1], 660, 660, 20, 20)
 
     hideDeadlyRegions(3)
 }
 
-// ############################# RUNNING THE GAME
+// ################################################################# RUNNING THE GAME
 
 numLifes = 5
-currentStage = 1
-initAll(currentStage, numLifes)
+currentLevel = 1
+usedSafePathMarkers = 0
+initSafePathMarkers()
+initAll(currentLevel, numLifes)
 
 setInterval(function (){
 
@@ -264,7 +310,7 @@ setInterval(function (){
     isInFinishLine = checkIfInFinishLine()
 
     if (isInFinishLine) {
-        stageComplete()
+        levelComplete()
     }
 
     if (!isAlive) {
