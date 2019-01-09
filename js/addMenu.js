@@ -7,9 +7,6 @@ var menuHTML = `
         <a href="#" class="menuHeader toggler selected">What I've done</a>
         <ul class="submenu">
             <li class="submenuitem">
-                <a href="projects.html">View Projects</a>
-            </li>
-            <li class="submenuitem">
                 <a href="/gameJS/index.html">JavaScript fun!</a>
             </li>
             <li class="submenuitem">
