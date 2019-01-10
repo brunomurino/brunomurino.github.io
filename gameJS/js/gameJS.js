@@ -8,6 +8,7 @@ var lifeDrawing = document.querySelector("#lifeDrawing")
 var mainChar = document.querySelector("#mainChar")
 var finishLine = document.querySelector("#finishLine")
 var safePathMarkers = document.querySelector("#safePathMarkers")
+var pathFollowed = document.querySelector("#pathFollowed")
 
 var numLifes
 var currentLevel
@@ -17,6 +18,26 @@ var deadlyRegions = {}
 var maxSafePathMarkers = 3
 var usedSafePathMarkers
 var safePathMarker = {}
+var path = {}
+var numPath
+
+function createPathMarker(mainChar) {
+    numPath++
+    path[numPath] = document.createElement("div")
+    path[numPath].classList.add("pathFollowed")
+
+    pathFollowed.appendChild(path[numPath])
+
+    let top = parseInt(mainChar.style.top)
+    let left = parseInt(mainChar.style.left)
+
+    initElement(path[numPath], 20, 20, top, left) 
+}
+
+function resetPathMarker() {
+    numPath = 0
+    pathFollowed.innerHTML = ""
+}
 
 function updateUILife(numLifes) {
 
@@ -28,9 +49,23 @@ function updateUILife(numLifes) {
 
     for (i=1; i<=numLifes; i++) {
         lifeDrawings[i] = document.createElement("li")
-        lifeDrawings[i].classList.add("lifeDraw")
+        if (i<=5) {
+            lifeDrawings[i].classList.add("lifeDraw")
+        } else {
+            lifeDrawings[i].classList.add("lifeDraw")
+            lifeDrawings[i].classList.add("extraLifeDraw")
+            let formerDrawing0 = lifeDrawings[1].getBoundingClientRect().left
+            let formerDrawing2 = lifeDrawings[i-1].getBoundingClientRect().left
+            let distance = formerDrawing2 - formerDrawing0
+            let newLeft = distance + 40
+            if (i==6) {
+                newLeft = distance + 60
+            }
+            lifeDrawings[i].style.left = `${newLeft}px`
+        }
         lifeDrawing.appendChild(lifeDrawings[i])
     }
+
 }
 
 function updateUILevel(currentLevel) {
@@ -111,18 +146,22 @@ function getKeyAndMove(event){
     switch(event.keyCode){
         case 65:
         case 37: //left arrow key
+            createPathMarker(mainChar)
             moveLeft(speed, true)
             break
         case 87:
         case 38: //Up arrow key
+            createPathMarker(mainChar,)
             moveUp(speed, true)
             break
         case 68:
         case 39: //right arrow key
+            createPathMarker(mainChar)
             moveRight(speed, true)
             break
         case 83:
         case 40: //down arrow key
+            createPathMarker(mainChar)
             moveDown(speed, true)
             break
         case 32:
@@ -150,13 +189,22 @@ function showDeadlyRegions(currentLevel) {
     }
 }
 
+function showPathFollowed(){
+    for (i=1; i<= numPath; i++) {
+        path[i].classList.add("showPathFollowed")
+    }
+}
+
 function initAll(currentLevel, numLifes){
     var isAlive = true
     var isInFinishLine = false
 
     updateUILevel(currentLevel)
+
     updateUILife(numLifes)
+
     updateUIMarkers(usedSafePathMarkers)
+    resetPathMarker()
 
     initElement(mainChar, 20, 20, 0, 0)
     initElement(finishLine, 20, 20, 680, 680)
@@ -231,7 +279,7 @@ function gameOver(){
         initSafePathMarkers()
         initAll(currentLevel, numLifes)
     } else {
-        alert(`You lost a life. Only ${numLifes} left.`)
+        alert(`Oops! You hit an invisible wall! So you lost a life. Only ${numLifes} left.`)
         initAll(currentLevel, numLifes)
     }
 }
@@ -244,17 +292,25 @@ function levelComplete(){
 
     showDeadlyRegions(currentLevel)
 
+    showPathFollowed()
+
     setTimeout( function(){
 
         currentLevel++
+        
+        numLifes += 2
+
+        if (numLifes >7) {
+            numLifes = 7
+        }
+        
         initSafePathMarkers()
-        numLifes = 5
 
         if (typeof numDeadlyRegions[currentLevel] == "undefined"){
             alert("Congratulations! You beat the game!!!!!")
             currentLevel = 1
         } else {
-            alert("Congratulations! You beat this level! Get ready for the next!")
+            alert(`Congratulations! You beat this level in ${numPath} steps! Get ready for the next!`)
         }
 
         initAll(currentLevel, numLifes)
@@ -267,12 +323,12 @@ function levelComplete(){
 numDeadlyRegions[1] = 6
 initLevel[1] = function (){
 
-    initElement(deadlyRegions[1], 150, 150, 0, 180)
-    initElement(deadlyRegions[2], 200, 200, 500, 230)
-    initElement(deadlyRegions[3], 250, 100, 150, 400)
-    initElement(deadlyRegions[4], 100, 150, 200, 0)
+    initElement(deadlyRegions[1], 140, 160, 0, 180)
+    initElement(deadlyRegions[2], 200, 200, 500, 220)
+    initElement(deadlyRegions[3], 240, 100, 140, 400)
+    initElement(deadlyRegions[4], 100, 160, 200, 0)
     initElement(deadlyRegions[5], 200, 160, 500, 520)
-    initElement(deadlyRegions[6], 200, 70, 200, 200)
+    initElement(deadlyRegions[6], 200, 60, 200, 180)
 
     hideDeadlyRegions(1)
 }
@@ -302,6 +358,7 @@ currentLevel = 1
 usedSafePathMarkers = 0
 initSafePathMarkers()
 initAll(currentLevel, numLifes)
+numPath = 0
 
 setInterval(function (){
 

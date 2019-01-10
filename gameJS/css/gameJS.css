@@ -15,6 +15,7 @@ html, body {
     height: 700px;
     width: 700px;
     align-self: center;
+    top: 200px;
     border-radius: 2px;
     box-shadow: 
         0 0 5px 0 white,
@@ -29,7 +30,8 @@ html, body {
     align-self: center;
     background-color: black;
     color: white;
-    top: 20px;
+    /* top: 20px; */
+    top: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -37,6 +39,8 @@ html, body {
 }
 
 #gameTitle {
+    position: absolute;
+    top: 30px;
     --gametitlecolor: lightgreen;
     font-size: 50px;
     color: white;
@@ -124,6 +128,8 @@ html, body {
 }
 
 #lifeDrawing {
+    position: relative;
+    height: 30px;
     width: 175px;
     border-style: solid;
     border-width: 3px;
@@ -169,4 +175,17 @@ html, body {
 .lifeDraw:before {
     top: calc( -1 * var(--heart-size)/2 );
     left: 0;
+}
+
+.pathFollowed {
+    position: absolute;
+}
+
+.showPathFollowed {
+    background-color: rgba(255,255,255,0.3);
+}
+
+.extraLifeDraw {
+    position: absolute;
+    top: 5px;
 }
