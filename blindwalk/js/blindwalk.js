@@ -9,9 +9,12 @@ var mainChar = document.querySelector("#mainChar")
 var finishLine = document.querySelector("#finishLine")
 var safePathMarkers = document.querySelector("#safePathMarkers")
 var pathFollowed = document.querySelector("#pathFollowed")
+var scoreCounter = document.querySelector("#scoreCounter")
+
 
 var numLifes
 var currentLevel
+var score = {}
 var initLevel = {}
 var numDeadlyRegions = {}
 var deadlyRegions = {}
@@ -308,6 +311,7 @@ function levelComplete(){
 
         if (typeof numDeadlyRegions[currentLevel] == "undefined"){
             alert("Congratulations! You beat the game!!!!!")
+            numLifes = 5
             currentLevel = 1
         } else {
             alert(`Congratulations! You beat this level in ${numPath} steps! Get ready for the next!`)
