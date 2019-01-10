@@ -7,7 +7,7 @@ var menuHTML = `
         <a href="#" class="menuHeader toggler selected">What I've done</a>
         <ul class="submenu">
             <li class="submenuitem">
-                <a href="/blindwalk/index.html">JavaScript fun!</a>
+                <a href="/blindwalk/">JavaScript fun!</a>
             </li>
             <li class="submenuitem">
                 <a href="cv.html">CV</a>
