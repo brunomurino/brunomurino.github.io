@@ -14,7 +14,7 @@ var scoreCounter = document.querySelector("#scoreCounter")
 
 var numLifes
 var currentLevel
-var score = {}
+var score
 var initLevel = {}
 var numDeadlyRegions = {}
 var deadlyRegions = {}
@@ -73,6 +73,10 @@ function updateUILife(numLifes) {
 
 function updateUILevel(currentLevel) {
     levelNumber.innerHTML = `Level: ${currentLevel}`
+}
+
+function updateUIScore(score) {
+    scoreCounter.innerHTML = `Score: ${score}`
 }
 
 function updateUIMarkers(usedSafePathMarkers) {
@@ -203,7 +207,7 @@ function initAll(currentLevel, numLifes){
     var isInFinishLine = false
 
     updateUILevel(currentLevel)
-
+    updateUIScore(score)
     updateUILife(numLifes)
 
     updateUIMarkers(usedSafePathMarkers)
@@ -255,6 +259,8 @@ function checkIfInside (me, area) {
 function checkIfAlive(){
 
     if (checkIfOnDeadlyRegion (mainChar, deadlyRegions)){
+        numLifes--
+        alert(`Oops! You hit an invisible wall and lost a life! Only ${numLifes} lifes remaining!`)
         return false
     }
     return true
@@ -275,16 +281,16 @@ function resetSafePathMarkers(){
 }
 
 function gameOver(){
-    numLifes--
+    
     if (numLifes == 0){
         alert("Game Over")
         numLifes = 5
+        score = 0
+        currentLevel = 1
         initSafePathMarkers()
-        initAll(currentLevel, numLifes)
-    } else {
-        alert(`Oops! You hit an invisible wall! So you lost a life. Only ${numLifes} left.`)
-        initAll(currentLevel, numLifes)
-    }
+    } 
+    initAll(currentLevel, numLifes) 
+
 }
 
 function levelComplete(){
@@ -302,6 +308,7 @@ function levelComplete(){
         currentLevel++
         
         numLifes += 2
+        score += 100
 
         if (numLifes >7) {
             numLifes = 7
@@ -313,6 +320,7 @@ function levelComplete(){
             alert("Congratulations! You beat the game!!!!!")
             numLifes = 5
             currentLevel = 1
+            score = 0
         } else {
             alert(`Congratulations! You beat this level in ${numPath} steps! Get ready for the next!`)
         }
@@ -323,6 +331,12 @@ function levelComplete(){
 }
 
 // ################################################################# DEFINITION OF THE LEVELS
+
+// numDeadlyRegions[1] = 0
+// initLevel[1] = function (){
+
+//     hideDeadlyRegions(0)
+// }
 
 numDeadlyRegions[1] = 6
 initLevel[1] = function (){
@@ -360,13 +374,17 @@ initLevel[3] = function (){
 numLifes = 5
 currentLevel = 1
 usedSafePathMarkers = 0
+numPath = 0
+score = 0
+
 initSafePathMarkers()
 initAll(currentLevel, numLifes)
-numPath = 0
+
 
 setInterval(function (){
 
     window.addEventListener('keydown', getKeyAndMove)
+
     isAlive = checkIfAlive()
     isInFinishLine = checkIfInFinishLine()
 

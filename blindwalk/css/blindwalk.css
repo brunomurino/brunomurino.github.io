@@ -67,8 +67,22 @@ html, body {
 }
 
 #markerCounter {
-    /* --markercountercolor: rgb(255,215,0); */
     --markercountercolor: #ff0080;
+    font-size: xx-large;
+    color:  white;
+    text-shadow: 
+        0 0 5px white,
+        0 0 10px white,
+        0 0 20px var(--markercountercolor),
+        0 0 30px var(--markercountercolor),
+        0 0 40px var(--markercountercolor),
+        0 0 55px var(--markercountercolor), 
+        0 0 75px var(--markercountercolor);
+}
+
+#scoreCounter {
+    display: none;
+    --markercountercolor: rgb(255,215,0);
     font-size: xx-large;
     color:  white;
     text-shadow: 
