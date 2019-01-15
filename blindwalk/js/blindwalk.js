@@ -11,7 +11,6 @@ var safePathMarkers = document.querySelector("#safePathMarkers")
 var pathFollowed = document.querySelector("#pathFollowed")
 var scoreCounter = document.querySelector("#scoreCounter")
 
-
 var numLifes
 var currentLevel
 var score
