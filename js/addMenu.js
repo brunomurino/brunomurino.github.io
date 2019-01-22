@@ -7,7 +7,13 @@ var menuHTML = `
         <a href="#" class="menuHeader toggler selected">What I've done</a>
         <ul class="submenu">
             <li class="submenuitem">
-                <a href="/blindwalk">JavaScript fun!</a>
+                <a href="/blindwalk">Blind Walk (Game)</a>
+            </li>
+            <li class="submenuitem">
+                <a href="/clock">JS Analog Clock</a>
+            </li>
+            <li class="submenuitem">
+                <a href="/windsofsunset">Winds of Sunset (Game) (under development)</a>
             </li>
             <li class="submenuitem">
                 <a href="cv.html">CV</a>

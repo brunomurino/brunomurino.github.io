@@ -1,0 +1,50 @@
+html, body {
+    height: 100%;
+    background-color: black;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+
+#fullMap {
+    position: relative;
+    background-color: burlywood;
+}
+
+#invisibleArea {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 600px;
+    width: 600px;
+    background-color: black;
+    mix-blend-mode: hard-light;
+}
+
+#visibleArea {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 300px;
+    width: 300px;
+    background-color: gray;
+}
+
+#mainChar {
+    position: relative;
+    top: 140px;
+    left: 140px;
+    height: 20px;
+    width: 20px;
+    background-color: blue;
+}
+
+.house {
+    position: relative;
+    top: 240px;
+    left: 280px;
+    height: 60px;
+    width: 60px;
+    background-color: red;
+}
