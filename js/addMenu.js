@@ -16,7 +16,7 @@ var menuHTML = `
                 <a href="/windsofsunset">Winds of Sunset (Game) (under development)</a>
             </li>
             <li class="submenuitem">
-                <a href="cv.html">CV</a>
+                <a href="BrunoMurinoResume.pdf">CV</a>
             </li>
         </ul>
 

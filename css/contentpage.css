@@ -17,13 +17,13 @@ a {
 
 @media (min-width:1000px) {
 	:root {
-		--lateralmargin: 200px;
+		--lateralmargin: 100px;
 	}
 }
 
 @media (min-width:1500px) {
 	:root {
-		--lateralmargin: 300px;
+		--lateralmargin: 150px;
 	}
 }
 
@@ -88,8 +88,16 @@ header a {
 	height: var(--burger-in);
     width: calc(6*var(--burger-in));
     position: fixed;
-    left: 30px;
+    left: 15px;
 }
+
+@media (min-width:450px) {
+	#lines {
+		left: 30px;
+	}
+}
+
+
 
 hr {
     display: block;

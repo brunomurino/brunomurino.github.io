@@ -4,12 +4,29 @@
     justify-content: center;
     align-content: center;
     margin: 0 30px;
+    align-items: flex-end;
 }
 
 .content p {
     color: white;
-    font-size: 20px;
     padding: 20px;
     background-color: rgba(0,0,0,0.3);
-    line-height: 1.5em;
+}
+
+@media (min-width:1000px) {
+	.content p {
+		color: white;
+        font-size: 20px;
+        padding: 20px;
+        background-color: rgba(0,0,0,0.3);
+        line-height: 1.5em;
+	}
+}
+
+.content a {
+    width: 150px;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 5px;
+    margin: 5px;
 }

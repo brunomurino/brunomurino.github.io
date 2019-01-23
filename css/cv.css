@@ -1,26 +1,17 @@
 .content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-content: center;
     margin: 0 30px;
+    position: relative;
 }
 
 .content p {
     color: white;
-    font-size: 20px;
-    padding: 20px;
+    padding: 10px;
     background-color: rgba(0,0,0,0.3);
-    line-height: 1.5em;
+    /* line-height: 1.5em; */
 }
-
-/* .download-btn {
-    color: white;
-    font-size: 20px;
-    padding: 20px;
-    background-color: rgba(0,0,0,0.8);
-    line-height: 1.5em;
-} */
 
 .cv {
     display: flex;
@@ -28,4 +19,63 @@
     justify-content: center;
     align-content: center;
     height: calc(100%);
+}
+
+.content a {
+    width: 150px;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 5px;
+    margin: 5px;
+    position: relative;
+}
+
+.content div h1 {
+    color: white;
+    margin: 10px;
+    font-size: 24px;
+}
+
+.content div p {
+    font-size: 14px;
+    text-align: left;
+    position: relative;
+}
+
+.date, .loc {
+    color: black;
+    font-weight: bold;
+}
+
+.loc {
+    position: absolute;
+    right: 0px;
+}
+
+li h2 {
+    font-weight: bold;
+    font-size: 16px;
+    padding: 5px;
+    text-align: left;
+}
+
+.description {
+    color: white;
+    padding: 5px;
+    background-color: rgba(0,0,0,0.3);
+    position: relative;
+    width: 80%;
+    /* display: none; */
+    margin: 10px auto;
+}
+
+.description li {
+    text-align: left;
+    font-size: 14px;
+    padding: 3px;
+}
+
+.description span {
+    font-weight: bold;
+    color: black;
 }
