@@ -58,6 +58,15 @@ var server = http.createServer(function(req, res){
 
 		jsStream.pipe(res)
 
+    } else if (req.url.match(/.pdf$/)) {
+    
+        var pdfPath = path.join(__dirname, req.url)
+        var pdfStream = fs.createReadStream(pdfPath)
+
+        res.writeHead(200, {"Content-Type": "application/pdf"})
+
+        pdfStream.pipe(res)
+
     } else {
         res.writeHead(404, {"Content-Type":"text/plain"})
         res.end("404 File Not Found")
