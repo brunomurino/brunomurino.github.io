@@ -26,7 +26,6 @@ menuUl.style.flexGrow = menuItems.length-1
 for (let i = 0; i < menuItems.length; i++) {
     let menuLi = document.createElement("li")
     let menuA = document.createElement("a")
-    menuA.setAttribute("href","#")
     menuA.setAttribute("onclick", menuItems[i][1])
     menuA.setAttribute("id", menuItems[i][2])
     menuA.setAttribute("class", "menuButton")
