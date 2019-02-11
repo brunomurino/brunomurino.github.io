@@ -18,7 +18,7 @@
 }
 
 #menu-container header span {
-    font-size: 9vh;
+    font-size: 7vh;
     line-height: 40vh;
     width: 40vh;
     border-style: solid;
@@ -32,7 +32,7 @@
 
 @media only screen and (min-width: 800px) {
     #menu-container header span {
-        font-size: 4vw;
+        font-size: 3vw;
         line-height: 18vw;
         width: 18vw;
     }

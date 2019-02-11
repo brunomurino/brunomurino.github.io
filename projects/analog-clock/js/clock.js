@@ -6,26 +6,25 @@ var handSecSP = document.querySelectorAll(".handSec")[1]
 var handMinSP = document.querySelectorAll(".handMin")[1]
 var handHourSP = document.querySelectorAll(".handHour")[1]
 
+function addTimezone(location, handSec, handMin, handHour) {
+  let now = moment().tz(location)
+
+  let seconds = now.second()
+  let secondsDegrees = ((seconds / 60) * 360) + 180
+  handSec.style.transform = `rotate(${secondsDegrees}deg)`
+
+  let mins = now.minute()
+  let minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 180
+  handMin.style.transform = `rotate(${minsDegrees}deg)`
+
+  let hour = now.hour()
+  let hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 180
+  handHour.style.transform = `rotate(${hourDegrees}deg)`
+}
+
 function setDate() {
-  const now = new Date()
-
-  const seconds = now.getSeconds()
-  const secondsDegrees = ((seconds / 60) * 360) + 180
-  handSecLondon.style.transform = `rotate(${secondsDegrees}deg)`
-  handSecSP.style.transform = `rotate(${secondsDegrees}deg)`
-
-  const mins = now.getMinutes()
-  const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 180
-  handMinLondon.style.transform = `rotate(${minsDegrees}deg)`
-  handMinSP.style.transform = `rotate(${minsDegrees}deg)`
-
-  const hourLondon = now.getHours()
-  const hourDegreesLondon = ((hourLondon / 12) * 360) + ((mins/60)*30) + 180
-  handHourLondon.style.transform = `rotate(${hourDegreesLondon}deg)`
-
-  const hourSP = now.getHours() - 2
-  const hourDegreesSP = ((hourSP / 12) * 360) + ((mins/60)*30) + 180
-  handHourSP.style.transform = `rotate(${hourDegreesSP}deg)`
+  addTimezone("Europe/London", handSecLondon, handMinLondon, handHourLondon)
+  addTimezone("America/Sao_Paulo", handSecSP, handMinSP, handHourSP)
 }
 
 setInterval(setDate, 1000)

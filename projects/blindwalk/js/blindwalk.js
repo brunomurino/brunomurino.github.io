@@ -33,7 +33,7 @@ function createPathMarker(mainChar) {
     let top = parseInt(mainChar.style.top)
     let left = parseInt(mainChar.style.left)
 
-    initElement(path[numPath], 20, 20, top, left) 
+    initElement(path[numPath], 2, 2, top, left) 
 }
 
 function resetPathMarker() {
@@ -100,7 +100,7 @@ function insertSafePathMarker(usedSafePathMarkers, mainChar) {
 
     console.log(`Inserted marker at ${top} and ${left}.`)
 
-    initElement(safePathMarker[usedSafePathMarkers], 20, 20, top, left) 
+    initElement(safePathMarker[usedSafePathMarkers], 2, 2, top, left) 
 }
 
 function initDeadlyRegion(numRegions) {
@@ -113,42 +113,49 @@ function initDeadlyRegion(numRegions) {
 }
 
 function initElement (element, h, w, posT, posL) {
-    element.style.height = h + "px"
-    element.style.width = w + "px"
-    element.style.top = posT + "px"
-    element.style.left = posL + "px"
+    element.style.height = h + "vh"
+    element.style.width = w + "vh"
+    element.style.top = posT + "vh"
+    element.style.left = posL + "vh"
+}
+
+function initFinishLine () {
+    finishLine.style.height = 2 + "vh"
+    finishLine.style.width = 2 + "vh"
+    finishLine.style.bottom = 0 + "vh"
+    finishLine.style.right = 0 + "vh"
 }
 
 function moveLeft(speed, keepInside) {
-    mainChar.style.left = parseInt(mainChar.style.left)-speed +'px'
+    mainChar.style.left = parseInt(mainChar.style.left)-speed +'vh'
     if (keepInside && !checkIfInside(mainChar,gameArea)){
-        mainChar.style.left = parseInt(mainChar.style.left)+speed +'px'
+        mainChar.style.left = parseInt(mainChar.style.left)+speed +'vh'
     }
 }
 
 function moveUp (speed, keepInside) {
-    mainChar.style.top = parseInt(mainChar.style.top)-speed +'px'
+    mainChar.style.top = parseInt(mainChar.style.top)-speed +'vh'
     if (keepInside && !checkIfInside(mainChar,gameArea)){
-        mainChar.style.top = parseInt(mainChar.style.top)+speed +'px'
+        mainChar.style.top = parseInt(mainChar.style.top)+speed +'vh'
     }
 }
 
 function moveRight (speed, keepInside) {
-    mainChar.style.left = parseInt(mainChar.style.left)+speed +'px'
+    mainChar.style.left = parseInt(mainChar.style.left)+speed +'vh'
     if (keepInside && !checkIfInside(mainChar,gameArea)){
-        mainChar.style.left = parseInt(mainChar.style.left)-speed +'px'
+        mainChar.style.left = parseInt(mainChar.style.left)-speed +'vh'
     }
 }
 
 function moveDown (speed, keepInside) {
-    mainChar.style.top = parseInt(mainChar.style.top)+speed +'px'
+    mainChar.style.top = parseInt(mainChar.style.top)+speed +'vh'
     if (keepInside && !checkIfInside(mainChar,gameArea)){
-        mainChar.style.top = parseInt(mainChar.style.top)-speed +'px'
+        mainChar.style.top = parseInt(mainChar.style.top)-speed +'vh'
     }
 }
 
 function getKeyAndMove(event){
-    var speed = 20		
+    var speed = 2		
     switch(event.keyCode){
         case 65:
         case 37: //left arrow key
@@ -212,9 +219,9 @@ function initAll(currentLevel, numLifes){
     updateUIMarkers(usedSafePathMarkers)
     resetPathMarker()
 
-    initElement(mainChar, 20, 20, 0, 0)
-    initElement(finishLine, 20, 20, 680, 680)
-
+    initElement(mainChar, 2, 2, 0, 0)
+    initFinishLine()
+    
     initDeadlyRegion(numDeadlyRegions[currentLevel])
 
     initLevel[currentLevel]()
@@ -268,7 +275,7 @@ function checkIfAlive(){
 function checkIfInFinishLine(){
     let meRect = mainChar.getBoundingClientRect()
     let flRect = finishLine.getBoundingClientRect()
-
+    
     return checkOverlap(meRect,flRect)
 }
 
@@ -294,7 +301,8 @@ function gameOver(){
 
 function levelComplete(){
 
-    initElement(finishLine, 0, 0, 0, 0)
+    initElement(mainChar, 2, 2, 0, 0)
+    initFinishLine()
 
     window.removeEventListener('keydown', getKeyAndMove)
 
@@ -340,12 +348,12 @@ function levelComplete(){
 numDeadlyRegions[1] = 6
 initLevel[1] = function (){
 
-    initElement(deadlyRegions[1], 140, 160, 0, 180)
-    initElement(deadlyRegions[2], 200, 200, 500, 220)
-    initElement(deadlyRegions[3], 240, 100, 140, 400)
-    initElement(deadlyRegions[4], 100, 160, 200, 0)
-    initElement(deadlyRegions[5], 200, 160, 500, 520)
-    initElement(deadlyRegions[6], 200, 60, 200, 180)
+    initElement(deadlyRegions[1], 14, 16, 0, 18)
+    initElement(deadlyRegions[2], 16, 20, 44, 12)
+    initElement(deadlyRegions[3], 24, 10, 14, 40)
+    initElement(deadlyRegions[4], 10, 16, 20, 0)
+    initElement(deadlyRegions[5], 16, 16, 44, 42)
+    initElement(deadlyRegions[6], 20, 6, 18, 18)
 
     hideDeadlyRegions(1)
 }
@@ -353,9 +361,9 @@ initLevel[1] = function (){
 numDeadlyRegions[2] = 3
 initLevel[2] = function (){
 
-    initElement(deadlyRegions[1], 150, 150, 0, 180)
-    initElement(deadlyRegions[2], 200, 200, 500, 230)
-    initElement(deadlyRegions[3], 250, 100, 150, 400)
+    initElement(deadlyRegions[1], 14, 16, 0, 18)
+    initElement(deadlyRegions[2], 16, 20, 44, 12)
+    initElement(deadlyRegions[3], 24, 10, 14, 40)
 
     hideDeadlyRegions(2)
 }
@@ -363,7 +371,7 @@ initLevel[2] = function (){
 numDeadlyRegions[3] = 1
 initLevel[3] = function (){
 
-    initElement(deadlyRegions[1], 660, 660, 20, 20)
+    initElement(deadlyRegions[1], 56, 56, 2, 2)
 
     hideDeadlyRegions(3)
 }

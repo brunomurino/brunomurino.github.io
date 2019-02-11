@@ -9,6 +9,7 @@ function addProject(name, link, description) {
     let newProjectAnchorText = document.createTextNode(name)
     newProjectAnchor.appendChild(newProjectAnchorText)
     newProjectAnchor.setAttribute("href", link)
+    newProjectAnchor.setAttribute("target", "_blank")
     newProject.appendChild(newProjectAnchor)
     
     let newProjectDescription = document.createElement("span")

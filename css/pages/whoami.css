@@ -5,7 +5,7 @@
 #whoami-container p {
     padding: 20px;
     margin: 0 20px;
-    background-color: rgba(207, 20, 43, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 5px;
     color: var(--main-light);
     font-size: large;
