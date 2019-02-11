@@ -1,0 +1,23 @@
+#projects-container {
+    justify-content: center;
+}
+
+#projects-container div {
+    display: flex;
+    flex-direction: column;
+}
+
+#projects-container div span{
+    color: var(--main-light);
+    font-size: medium;
+    padding: 0 20px 20px 20px;
+}
+
+#projects-container a {
+    padding: 20px;
+    margin: 10px;
+    background-color: black;
+    color: var(--main-light);
+    border-radius: 5px;
+    font-size: x-large;
+}

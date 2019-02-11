@@ -1,50 +1,70 @@
-var menuHTML = `
-<div class="nav-wrapper">
-    <nav Id="sidenav" class="split" >
+let menuContainer = document.querySelector("#menu-container")
 
-        <a href="whoami.html" class="menuHeader">Who am I</a>
+// HEADER
 
-        <a href="#" class="menuHeader toggler selected">What I've done</a>
-        <ul class="submenu">
-            <li class="submenuitem">
-                <a href="/blindwalk">Blind Walk (Game)</a>
-            </li>
-            <li class="submenuitem">
-                <a href="/clock">JS Analog Clock</a>
-            </li>
-            <li class="submenuitem">
-                <a href="/windsofsunset">Winds of Sunset (Game) (under development)</a>
-            </li>
-            <li class="submenuitem">
-                <a href="BrunoMurinoResume.pdf">CV</a>
-            </li>
-        </ul>
+let menuHeader = document.createElement("header")
+let menuHeaderTextSpan = document.createElement("span")
+menuHeaderTextSpan.setAttribute("onclick", "location.reload()")
+let menuHeaderText = document.createTextNode("murino.io")
+menuHeaderTextSpan.appendChild(menuHeaderText)
+menuHeader.appendChild(menuHeaderTextSpan)
+menuContainer.appendChild(menuHeader)
 
-        <div class="menuHeader toggler selected">Where to find me</div>
-        <ul class="submenu">
-            <li class="submenuitem">
-                <p>+447898976564</p>
-            </li>
-            <li class="submenuitem">
-                <p>bfsmurino@gmail.com</p>
-            </li>
-            <li class="submenuitem">
-                <p>London, UK</p>
-            </li>
-        </ul>
+// MENU
 
-    </nav>
-</div>
+let menuUl = document.createElement("ul")
 
-<div class="footer-wrapper">
-    <footer>
-        <a href="https://github.com/brunomurino" class="fa fa-github"></a>
-        <a href="https://www.linkedin.com/in/brunomurino/" class="fa fa-linkedin-square"></a>
-        <!-- <a href="#" class="fa fa-twitter"></a> -->
-    </footer>
-</div>
-`
+let menuItems = [
+    ["Who am I", "showWhoami()", "whoamiButton"],
+    ["What I've done", "showProjects()", "projectsButton"],
+    ["What I've written", "showBlog()", "blogButton"],
+    ["Where to find me", "showContactme()", "contactmeButton"],
+]
 
-var menu = document.querySelector("div.menu")
-menu.innerHTML = menuHTML
-console.log("Menu was added.")
+menuUl.style.flexGrow = menuItems.length-1
+
+for (let i = 0; i < menuItems.length; i++) {
+    let menuLi = document.createElement("li")
+    let menuA = document.createElement("a")
+    menuA.setAttribute("href","#")
+    menuA.setAttribute("onclick", menuItems[i][1])
+    menuA.setAttribute("id", menuItems[i][2])
+    menuA.setAttribute("class", "menuButton")
+    let menuAtext = document.createTextNode(menuItems[i][0])
+    menuA.appendChild(menuAtext)
+    menuLi.appendChild(menuA)
+    menuUl.appendChild(menuLi)
+}
+
+menuContainer.appendChild(menuUl)
+
+// FOOTER
+
+let menuFooter = document.createElement("footer")
+
+let githubIcon = document.createElement("a")
+githubIcon.setAttribute("id", "github-icon")
+githubIcon.setAttribute("class", "fa fa-github")
+githubIcon.setAttribute("href", "https://github.com/brunomurino")
+
+let linkedinIcon = document.createElement("a")
+linkedinIcon.setAttribute("id", "linkedin-icon")
+linkedinIcon.setAttribute("class", "fa fa-linkedin-square")
+linkedinIcon.setAttribute("href", "https://linkedin.com/in/brunomurino")
+
+menuFooter.appendChild(githubIcon)
+menuFooter.appendChild(linkedinIcon)
+
+menuContainer.appendChild(menuFooter)
+
+// BURGER BUTTON
+
+let contentContainer = document.querySelector("#content-container")
+let burgerButton = document.createElement("div")
+burgerButton.setAttribute("id", "lines")
+contentContainer.appendChild(burgerButton)
+
+burgerButton.setAttribute("onclick","showMenu()")
+
+
+

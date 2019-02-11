@@ -1,0 +1,72 @@
+#menu-container {
+    background-image: linear-gradient(to bottom left, var(--main-dark), var(--main-dark2) );
+    color: var(--main-light);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+}
+
+#menu-container header {
+    flex-grow: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+#menu-container header span {
+    font-size: 9vh;
+    line-height: 40vh;
+    width: 40vh;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 50%;
+}
+
+#menu-container header span:hover {
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 800px) {
+    #menu-container header span {
+        font-size: 4vw;
+        line-height: 18vw;
+        width: 18vw;
+    }
+}
+
+#menu-container ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#menu-container ul a {
+    padding: 10px;
+    color: white;
+    font-size: x-large;
+}
+
+#menu-container ul a.active {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+}
+
+#menu-container footer {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+#github-icon, #linkedin-icon {
+    font-size: 2em;
+    text-align: center;
+    align-self: center;
+    color: white;
+}

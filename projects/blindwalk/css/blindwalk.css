@@ -1,0 +1,205 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    background-color: black;
+}
+
+#gameArea {
+    position: absolute;
+    background-color: rgba(45, 134, 207, 0.3);
+    height: 700px;
+    width: 700px;
+    align-self: center;
+    top: 200px;
+    border-radius: 2px;
+    box-shadow: 
+        0 0 5px 0 white,
+        0 0 20px 0 white,
+        0 0 30px 0 white;
+}
+
+#gameUI {
+    position: absolute;
+    height: 80px;
+    width: 900px;
+    align-self: center;
+    background-color: black;
+    color: white;
+    /* top: 20px; */
+    top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#gameTitle {
+    position: absolute;
+    top: 30px;
+    --gametitlecolor: lightgreen;
+    font-size: 50px;
+    color: white;
+    text-shadow: 
+        0 0 5px white,
+        0 0 20px var(--gametitlecolor),
+        0 0 30px var(--gametitlecolor),
+        0 0 40px var(--gametitlecolor),
+        0 0 55px var(--gametitlecolor),
+        0 0 75px var(--gametitlecolor);
+}
+
+#levelNumber {
+    font-size: xx-large;
+    color: white; 
+    text-shadow: 
+        0 0 5px white,
+        0 0 10px white,
+        0 0 20px rgb(143,252,255),
+        0 0 30px rgb(143,252,255),
+        0 0 40px rgb(143,252,255),
+        0 0 55px rgb(143,252,255), 
+        0 0 75px rgb(143,252,255);
+}
+
+#markerCounter {
+    --markercountercolor: #ff0080;
+    font-size: xx-large;
+    color:  white;
+    text-shadow: 
+        0 0 5px white,
+        0 0 10px white,
+        0 0 20px var(--markercountercolor),
+        0 0 30px var(--markercountercolor),
+        0 0 40px var(--markercountercolor),
+        0 0 55px var(--markercountercolor), 
+        0 0 75px var(--markercountercolor);
+}
+
+#scoreCounter {
+    display: none;
+    --markercountercolor: rgb(255,215,0);
+    font-size: xx-large;
+    color:  white;
+    text-shadow: 
+        0 0 5px white,
+        0 0 10px white,
+        0 0 20px var(--markercountercolor),
+        0 0 30px var(--markercountercolor),
+        0 0 40px var(--markercountercolor),
+        0 0 55px var(--markercountercolor), 
+        0 0 75px var(--markercountercolor);
+}
+
+#mainChar {
+    z-index: 1;
+    position: absolute;
+    background-color: white;
+    border-radius: 1px;
+    /* box-shadow: 
+        0 0 5px 0 rgb(143,252,255),
+        0 0 10px 0 rgb(143,252,255); */
+}
+
+.safePathMarker {
+    position: absolute;
+    background-color: rgba(204, 51, 204,1);
+    border-radius: 2px;
+    box-shadow: 
+        0 0 5px 0 white,
+        0 0 10px 0 rgb(204, 51, 204);
+}
+
+#finishLine {
+    position: absolute;
+    background-color: coral;
+    border-radius: 1px;
+    box-shadow: 0 0 5px 0 black;
+    /* box-shadow: 
+        0 0 5px 0 white,
+        0 0 10px 0 white,
+        0 0 20px 0 rgb(143,252,255),
+        0 0 30px 0 rgb(143,252,255); */
+}
+
+.deadlyRegion {
+    position: absolute;
+    background-color: rgba(173, 255, 47, 0);
+}
+
+.showDeadlyRegion {
+    background-color: rgba(173, 255, 47, 0.8);
+    box-shadow: 
+        0 0 5px 0 white,
+        0 0 10px 0 white,
+        0 0 15px 0 white,
+        0 0 20px 0 rgb(173, 255, 47),
+        0 0 30px 0 rgb(173, 255, 47);
+}
+
+#lifeDrawing {
+    position: relative;
+    height: 30px;
+    width: 175px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 
+        0 0 5px 0 white,
+        0 0 10px 0 white,
+        0 0 20px 0 rgb(143,252,255),
+        0 0 30px 0 rgb(143,252,255);
+}
+
+
+:root {
+    --heart-size: 15px;
+}
+
+.lifeDraw, .lifeDraw:after, .lifeDraw:before {
+    background-color: red;
+    height: var(--heart-size);
+    width: var(--heart-size);
+}
+
+.lifeDraw {
+    transform: rotate(45deg);
+    margin: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.lifeDraw:before, .lifeDraw:after {
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+}
+
+.lifeDraw:after {
+    top: 0;
+    left: calc( -1 * var(--heart-size)/2 );
+}
+
+.lifeDraw:before {
+    top: calc( -1 * var(--heart-size)/2 );
+    left: 0;
+}
+
+.pathFollowed {
+    position: absolute;
+}
+
+.showPathFollowed {
+    background-color: rgba(255,255,255,0.3);
+}
+
+.extraLifeDraw {
+    position: absolute;
+    top: 5px;
+}

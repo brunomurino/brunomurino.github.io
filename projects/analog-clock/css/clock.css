@@ -1,0 +1,118 @@
+:root {
+    --clockSize: 500px;
+    --clockBorderWidth: calc( 3*var(--clockSize)/100 );
+    --innerClockFaceBorderWidth: calc( 1*var(--clockSize)/100 );
+    --innerCircleBorderWidth: calc( var(--clockSize)/500 );
+}
+
+body {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.location {
+    font-size: 32px;
+    text-align: center;
+}
+
+.clock, .clock2 {
+    height: var(--clockSize);
+    width: var(--clockSize);
+    background-color: goldenrod;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-width: var(--clockBorderWidth);
+    border-color: black;
+}
+
+.innerClockFace {
+    height: 96%;
+    width: 96%;
+    position: relative;
+    border-style: solid;
+    border-radius: 100%;
+    background-color: white;
+    border-color: black;
+    border-width: var(--innerClockFaceBorderWidth);
+    z-index: 1;
+}
+
+.handMin, .handHour, .handSec {
+    background-color: black;
+    position: absolute;
+    left: calc(50% - 3.5%/2);
+    border-radius: 10px;
+    /* transition: transform 1s ease; */
+}
+
+.handMin {
+    width: 3%;
+    height: 60%;
+    top: calc(50% - 12%);
+    transform-origin: center 20%;
+    /* transform: rotate(180deg); */
+}
+
+.handHour {
+    width: 3.5%;
+    height: 33%;
+    top: calc(50% - 8.25%);
+    transform-origin: center 25%;
+    /* transform: rotate(180deg); */
+}
+
+.handSec {
+    width: 2%;
+    height: 45%;
+    top: calc(50% - 9%);
+    transform-origin: center 20%;
+    /* transition: all 1s linear; */
+}
+
+.ornamentTopRight {
+    height: calc( 50% * ( 0.29289321881 ) );
+    width: calc( 50% * ( 0.29289321881 ) );
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+}
+
+.clockCenter {
+    height: 2%;
+    width: 2%;
+    background-color: grey;
+    border-radius: 100%;
+    position: absolute;
+    top: 49%;
+    left: 49%;
+    z-index: 2;
+}
+
+.clockCenterBig {
+    height: 8%;
+    width: 8%;
+    background-color: black;
+    border-radius: 100%;
+    position: absolute;
+    top: 46%;
+    left: 46%;
+    z-index: 1;
+}
+
+.innerCircle {
+    position: absolute;
+    top: calc(25% - var(--innerCircleBorderWidth));
+    left: calc(25% - var(--innerCircleBorderWidth));
+    height: 50%;
+    width: 50%;
+    border-style: solid;
+    border-width: var(--innerCircleBorderWidth);
+    border-radius: 100%;
+}

@@ -1,0 +1,52 @@
+@font-face {
+    font-family: GilliusADFNo2;
+    src: url("/fonts/gillius-adf-no2/GilliusADFNo2-Regular.otf") format("opentype");
+}
+
+:root{
+    --main-light: White;
+    --main-dark: #00247D;
+	--main-dark2: rgb(207, 20, 43);
+}
+
+/********************************************/
+
+html, body {
+    font-family: GilliusADFNo2;
+    height: 100%;
+}
+
+#content-container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: none;
+    background-image: linear-gradient(to bottom right, var(--main-dark), var(--main-dark2) );
+}
+
+.container {
+    overflow: scroll;
+    scroll-behavior: contain;
+    position: relative;
+    top: 52px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 52px);
+    width: 100%;
+}
+
+#lines {
+    background-color: rgba(0, 0, 0, 0);
+	text-align: center;
+	--burger-in: 5px;
+	--burger-out: 4px;
+	border-bottom: calc(2*var(--burger-out) + var(--burger-in)) double var(--main-dark2);
+	border-top: var(--burger-out) solid var(--main-dark2);
+	content: "";
+	height: var(--burger-in);
+    width: calc(6*var(--burger-in));
+    position: fixed;
+    margin: 15px;
+}
+
+

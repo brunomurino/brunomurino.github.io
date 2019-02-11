@@ -3,6 +3,7 @@ a {
 	color: white;
 }
 
+
 @media (min-width:10px) {
 	:root {
 		--lateralmargin: 0px;
@@ -30,6 +31,7 @@ a {
 html, body {
 	height: 100%;
 	background-image: linear-gradient(to top right, var(--main-dark), var(--main-dark2) );
+	font-family: GilliusADFNo2;
 }
 
 div.main {
@@ -41,7 +43,9 @@ div.main {
 	flex-direction: column;
 	justify-content: space-around;
 	text-align: center;
-	font-family:  monospace;
+	/* font-family:  monospace; */
+	/* font-family: GilliusADFNo2; */
+	
 }
 
 header {

@@ -1,0 +1,23 @@
+#whoami-container {
+    align-items: center;
+}
+
+#whoami-container p {
+    padding: 20px;
+    margin: 0 20px;
+    background-color: rgba(207, 20, 43, 0.6);
+    border-radius: 5px;
+    color: var(--main-light);
+    font-size: large;
+}
+
+#linkcv {
+    padding: 10px;
+    width: 150px;
+    background-color: rgba(0,0,0,0.9);
+    text-align: center;
+    border-radius: 5px;
+    color: var(--main-light);
+    position: fixed;
+    top: 10px;
+}
