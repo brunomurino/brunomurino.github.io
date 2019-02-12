@@ -42,7 +42,6 @@ function adjustView () {
         if (contentContainer.childElementCount == 0) {
             menuContainer.style.width = "100%"
             contentContainer.style.display = "none"
-            deactivateAllButtons(menuButtons)
         }
         
     } else {
