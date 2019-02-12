@@ -1,5 +1,7 @@
 let minW800 = window.matchMedia("(min-width: 800px)")
 
+// let menuContainer = document.querySelector("#menu-container")
+
 let menuButtons = document.querySelectorAll(".menuButton")
 let whoamiButton = document.querySelector("#whoamiButton")
 let projectsButton = document.querySelector("#projectsButton")
@@ -19,6 +21,7 @@ function deactivateAllButtons(buttons) {
 function showMenu(){
     let menuContainer = document.querySelector("#menu-container")
     menuContainer.style.display = "flex"
+    burgerButton.style.display = "none"
 
     let contentContainer = document.querySelector("#content-container")
     contentContainer.style.display = "none" 
@@ -26,22 +29,63 @@ function showMenu(){
     deactivateAllButtons(menuButtons)
 }
 
-function switchView () {
+function adjustView () {
+    if (minW800.matches) {
 
-    adjustView ()
+        menuContainer.style.display = "flex"
+        menuContainer.style.width = "20%"
+        burgerButton.style.display = "none"
+        contentContainer.style.display = "flex"
+        contentContainer.style.width = "80%"
+        contentContainer.style.right = "0"
+
+        if (contentContainer.childElementCount == 0) {
+            menuContainer.style.width = "100%"
+            contentContainer.style.display = "none"
+            deactivateAllButtons(menuButtons)
+        }
+        
+    } else {
+        menuContainer.style.display = "flex"
+        menuContainer.style.width = "100%"
+        contentContainer.style.display = "none"
+        contentContainer.style.width = "100%"
+    }
+}
+
+minW800.addListener(adjustView)
+
+function switchView () {
 
     let menuContainer = document.querySelector("#menu-container")
     
     deactivateAllButtons(menuButtons)
 
+    let contentContainer = document.querySelector("#content-container")
+
+    if (minW800.matches) {
+        menuContainer.style.display = "flex"
+        menuContainer.style.width = "20%"
+        contentContainer.style.display = "flex"
+        contentContainer.style.width = "80%"
+        contentContainer.style.right = "0"
+    } else {
+        
+        menuContainer.style.display = "flex"
+        menuContainer.style.width = "100%"
+        contentContainer.style.display = "none"
+        contentContainer.style.width = "100%"
+    }
+
+    contentContainer.style.display = "flex"
+    burgerButton.style.display = "none"
+
     if (!minW800.matches) {
         menuContainer.style.display = "none"
+        burgerButton.style.display = "flex"
     }
     
-    let contentContainer = document.querySelector("#content-container")
-    contentContainer.style.display = "flex"
-
-    while (contentContainer.childElementCount >= 2) {
+    while (contentContainer.childElementCount > 0) {
         contentContainer.removeChild(contentContainer.lastChild)
     }
 }
@@ -68,21 +112,3 @@ function showContactme() {
     contentContainer.appendChild(contactMeContainer)
     activateButton(contactmeButton)
 }
-
-function adjustView () {
-    if (minW800.matches) {
-        menuContainer.style.display = "flex"
-        menuContainer.style.width = "20%"
-        burgerButton.style.display = "none"
-        contentContainer.style.width = "80%"
-        contentContainer.style.right = "0"
-    } else {
-        menuContainer.style.display = "flex"
-        menuContainer.style.width = "100%"
-        burgerButton.style.display = "flex"
-        contentContainer.style.display = "none"
-        contentContainer.style.width = "100%"
-    }
-}
-
-minW800.addListener(adjustView)

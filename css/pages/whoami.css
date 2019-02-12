@@ -1,14 +1,17 @@
 #whoami-container {
     align-items: center;
+    top: 56px;
+    height: calc(100% - 56px - 2 * 10px);
 }
 
 #whoami-container p {
     padding: 20px;
-    margin: 0 20px;
+    margin: 0 20px 20px 20px;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 5px;
     color: var(--main-light);
     font-size: large;
+    position: relative;
 }
 
 #linkcv {

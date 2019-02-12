@@ -35,6 +35,14 @@ html, body {
     width: 100%;
 }
 
+@media only screen and (min-width: 800px) {
+    .container {
+        top: 0;
+        margin: 10px;
+        height: calc( 100% - 2 * 10px );
+    }
+}
+
 #lines {
     background-color: rgba(0, 0, 0, 0);
 	text-align: center;

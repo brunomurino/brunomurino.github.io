@@ -61,9 +61,13 @@ menuContainer.appendChild(menuFooter)
 let contentContainer = document.querySelector("#content-container")
 let burgerButton = document.createElement("div")
 burgerButton.setAttribute("id", "lines")
-contentContainer.appendChild(burgerButton)
-
 burgerButton.setAttribute("onclick","showMenu()")
+burgerButton.style.display = "none"
+
+// contentContainer.appendChild(burgerButton)
+document.querySelector("body").appendChild(burgerButton)
+
+
 
 
 
