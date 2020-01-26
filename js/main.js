@@ -9,12 +9,13 @@ let blogButton = document.querySelector("#blogButton")
 let contactmeButton = document.querySelector("#contactmeButton")
 
 function activateButton(button) {
-    button.classList.add("active")
+    // button.classList.add("active")
+    button.classList.add("textbox")
 }
 
 function deactivateAllButtons(buttons) {
     for (i = 0; i < buttons.length; ++i) {
-        buttons[i].classList.remove("active")
+        buttons[i].classList.remove("textbox")
     }
 }
 
@@ -35,9 +36,8 @@ function adjustView () {
         menuContainer.style.display = "flex"
         menuContainer.style.width = "20%"
         burgerButton.style.display = "none"
-        contentContainer.style.display = "flex"
-        contentContainer.style.width = "80%"
-        contentContainer.style.right = "0"
+        contentContainer.classList.add("active_content")
+        contentContainer.classList.add("deactive_content")
 
         if (contentContainer.childElementCount == 0) {
             menuContainer.style.width = "100%"
@@ -47,8 +47,8 @@ function adjustView () {
     } else {
         menuContainer.style.display = "flex"
         menuContainer.style.width = "100%"
-        contentContainer.style.display = "none"
-        contentContainer.style.width = "100%"
+        contentContainer.classList.remove("active_content")
+        contentContainer.classList.add("deactive_content")
     }
 }
 
@@ -65,15 +65,12 @@ function switchView () {
     if (minW800.matches) {
         menuContainer.style.display = "flex"
         menuContainer.style.width = "20%"
-        contentContainer.style.display = "flex"
-        contentContainer.style.width = "80%"
-        contentContainer.style.right = "0"
+        contentContainer.classList.add("active_content")
     } else {
-        
         menuContainer.style.display = "flex"
-        menuContainer.style.width = "100%"
-        contentContainer.style.display = "none"
-        contentContainer.style.width = "100%"
+        menuContainer.style.width = "calc(100% - 2*10px)"
+        contentContainer.classList.remove("active_content")
+        contentContainer.classList.add("deactive_content")
     }
 
     contentContainer.style.display = "flex"
@@ -90,7 +87,7 @@ function switchView () {
 }
 
 function showWhoami() {
-    switchView() 
+    switchView()
     contentContainer.appendChild(whoAmIContainer)
     activateButton(whoamiButton)
 }
@@ -102,12 +99,13 @@ function showProjects() {
 }
 
 function showBlog() {
-    switchView() 
+    switchView()
+    contentContainer.appendChild(blogContainer)
     activateButton(blogButton)
 }
 
 function showContactme() {
-    switchView () 
+    switchView()
     contentContainer.appendChild(contactMeContainer)
     activateButton(contactmeButton)
 }

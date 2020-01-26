@@ -23,7 +23,7 @@ After 4 months working at EY I quit to dedicate myself fully to the master degre
 I’m currently looking for a challenging analytical role within technology where I can utilise both my analytical skill set and my tech skills.`
 
 whoAmIParagraph.innerHTML = whoAmIText
-
+whoAmIParagraph.setAttribute("class", "textbox")
 // Add to page
 
 whoAmIContainer.appendChild(cvLink)

@@ -1,14 +1,14 @@
-#projects-container {
+#blog-container {
     display: block;
 }
 
-#projects-container div {
+#blog-container div {
     display: flex;
     flex-direction: column;
     margin: 0 10px 10px 10px;
 }
 
-#projects-container div a {
+#blog-container div a {
     padding: 10px;
     background-color: black;
     color: var(--main-light);
@@ -16,8 +16,8 @@
     font-size: x-large;
 }
 
-#projects-container div span{
-    color: var(--textbox-color);
+#blog-container div span{
+    color: var(--main-light);
     font-size: medium;
     padding: 10px;
 }

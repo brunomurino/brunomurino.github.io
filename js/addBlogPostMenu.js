@@ -22,10 +22,10 @@ menuContainer.appendChild(menuHeader)
 let menuUl = document.createElement("ul")
 
 let menuItems = [
-    ["Who am I", "showWhoami()", "whoamiButton"],
-    ["What I've done", "showProjects()", "projectsButton"],
-    ["What I've written", "showBlog()", "blogButton"],
-    ["Where to find me", "showContactme()", "contactmeButton"],
+    ["Who am I", "../../", "whoamiButton"],
+    ["What I've done", "../../", "projectsButton"],
+    ["What I've written", "../../", "blogButton"],
+    ["Where to find me", "../../", "contactmeButton"],
 ]
 
 menuUl.style.flexGrow = menuItems.length-1
@@ -33,7 +33,7 @@ menuUl.style.flexGrow = menuItems.length-1
 for (let i = 0; i < menuItems.length; i++) {
     let menuLi = document.createElement("li")
     let menuA = document.createElement("a")
-    menuA.setAttribute("onclick", menuItems[i][1])
+    menuA.setAttribute("href", menuItems[i][1])
     menuA.setAttribute("id", menuItems[i][2])
     menuA.setAttribute("class", "menuButton")
     let menuAtext = document.createTextNode(menuItems[i][0])

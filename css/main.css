@@ -4,9 +4,14 @@
 }
 
 :root{
-    --main-light: White;
-    --main-dark: #00247D;
-	--main-dark2: rgb(207, 20, 43);
+    --main-light: white;
+    --main-dark: #d7e1ea;
+    --main-dark2: #e3e8ec;
+    
+    --textbox-background: #f6f1ed99;
+    --textbox-color: #00000099;
+    --border-color: #d7e1ea;
+    /* var(--text-background) */
 }
 
 /********************************************/
@@ -14,14 +19,18 @@
 html, body {
     font-family: GilliusADFNo2;
     height: 100%;
+    background-color: var(--main-dark);
+    color: var(--main-light);
+    /* background-image: linear-gradient(to top right, var(--main-dark), var(--main-dark2) ); */
+
 }
 
 #content-container {
     height: 100%;
-    width: 100%;
+    /* width: 100%; */
     position: absolute;
-    display: none;
-    background-image: linear-gradient(to bottom right, var(--main-dark), var(--main-dark2) );
+    /* display: none; */
+    /* background-image: linear-gradient(to top right, var(--main-dark), var(--main-dark2) ); */
 }
 
 .container {
@@ -33,6 +42,23 @@ html, body {
     flex-direction: column;
     height: calc(100% - 52px);
     width: 100%;
+}
+
+.active_content {
+    display: flex;
+    width: calc(80% - 2*10px);
+    right: 0px;
+}
+
+.deactive_content {
+    width: 100%;
+    display: none;
+}
+
+.textbox {
+    background-color: var(--textbox-background);
+    border-radius: 5px;
+    color: var(--textbox-color);
 }
 
 @media only screen and (min-width: 800px) {
