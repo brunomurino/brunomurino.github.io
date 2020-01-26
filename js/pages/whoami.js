@@ -4,11 +4,12 @@ whoAmIContainer.setAttribute("class", "container")
 
 // CV LINK
 
-let cvLink = document.createElement("a")
-cvLink.setAttribute("id", "linkcv")
-let cvLinkText = document.createTextNode("CV")
-cvLink.setAttribute("href" , "BrunoMurinoResume.pdf")
-cvLink.appendChild(cvLinkText)
+// let cvLink = document.createElement("a")
+// cvLink.setAttribute("id", "linkcv")
+// let cvLinkText = document.createTextNode("CV")
+// cvLink.setAttribute("href" , "BrunoMurinoResume.pdf")
+// cvLink.appendChild(cvLinkText)
+// whoAmIContainer.appendChild(cvLink)
 
 // PARAGRAPH
 
@@ -26,8 +27,4 @@ whoAmIParagraph.innerHTML = whoAmIText
 whoAmIParagraph.setAttribute("class", "textbox")
 // Add to page
 
-whoAmIContainer.appendChild(cvLink)
 whoAmIContainer.appendChild(whoAmIParagraph)
-
-
-

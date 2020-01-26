@@ -1,7 +1,7 @@
 #whoami-container {
     align-items: center;
-    top: 56px;
-    height: calc(100% - 56px - 2 * 10px);
+    /* top: 56px; */
+    /* height: calc(100% - 56px - 2 * 10px); */
 }
 
 #whoami-container p {
