@@ -1,15 +1,15 @@
 #menu-container {
     color: var(--main-light);
-    height: calc(100% - 2*10px);
-    width: calc(100% - 2*10px);
+    height: calc(100% - 2*00px);
+    width: calc(100% - 2*00px);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     position: absolute;
-    border-style: solid;
-    border-width: 10px;
-    border-color: var(--border-color);
+    /* border-style: solid; */
+    /* border-width: 10px; */
+    /* border-color: var(--border-color); */
 }
 
 #menu-container header {

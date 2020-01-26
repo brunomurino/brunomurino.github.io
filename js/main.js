@@ -34,7 +34,7 @@ function adjustView () {
     if (minW800.matches) {
 
         menuContainer.style.display = "flex"
-        menuContainer.style.width = "20%"
+        menuContainer.style.width = "calc(20% + 40px)"
         burgerButton.style.display = "none"
         contentContainer.classList.add("active_content")
         contentContainer.classList.add("deactive_content")
@@ -64,7 +64,7 @@ function switchView () {
 
     if (minW800.matches) {
         menuContainer.style.display = "flex"
-        menuContainer.style.width = "20%"
+        menuContainer.style.width = "calc(20% + 40px)"
         contentContainer.classList.add("active_content")
     } else {
         menuContainer.style.display = "flex"

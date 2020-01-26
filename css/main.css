@@ -5,8 +5,11 @@
 
 :root{
     --main-light: white;
-    --main-dark: #d7e1ea;
-    --main-dark2: #e3e8ec;
+    /* --main-dark: #d7e1ea;
+    --main-dark2: #e3e8ec; */
+
+    --main-dark: #00247D;
+	--main-dark2: rgb(207, 20, 43);
     
     --textbox-background: #f6f1ed99;
     --textbox-color: #00000099;
@@ -19,7 +22,8 @@
 html, body {
     font-family: GilliusADFNo2;
     height: 100%;
-    background-color: var(--main-dark);
+    background-image: linear-gradient(to top right, var(--main-dark), var(--main-dark2) );
+    /* background-color: var(--main-dark); */
     color: var(--main-light);
     /* background-image: linear-gradient(to top right, var(--main-dark), var(--main-dark2) ); */
 
@@ -46,7 +50,7 @@ html, body {
 
 .active_content {
     display: flex;
-    width: calc(80% - 2*10px);
+    width: calc(80% - 2*20px);
     right: 0px;
 }
 
