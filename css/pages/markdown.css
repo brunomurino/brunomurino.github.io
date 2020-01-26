@@ -1,0 +1,13 @@
+.markdown-body {
+    background-color: var(--textbox-color);
+    font-family: GilliusADFNo2;
+    padding: 20px;
+    color: white
+}
+
+.markdown-body a {
+    /* text-decoration: none; */
+    /* background-color: var(--textbox-background);
+    border-radius: 5px; */
+    color: var(--markdown--link);
+}

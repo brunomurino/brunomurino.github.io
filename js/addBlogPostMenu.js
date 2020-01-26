@@ -3,18 +3,11 @@ let menuContainer = document.querySelector("#menu-container")
 // HEADER
 
 let menuHeader = document.createElement("header")
-let menuHeaderDivCircle = document.createElement("div")
-let menuHeaderDivSquare = document.createElement("div")
-menuHeaderDivCircle.setAttribute("id", "divCircle")
-menuHeaderDivSquare.setAttribute("id", "divSquare")
-// menuHeaderDivSquare.classList.add("textbox")
 let menuHeaderTextSpan = document.createElement("span")
-menuHeaderDivCircle.setAttribute("onclick", "location.reload()")
+menuHeaderTextSpan.setAttribute("onclick", "location.reload()")
 let menuHeaderText = document.createTextNode("Bruno Murino")
 menuHeaderTextSpan.appendChild(menuHeaderText)
-menuHeaderDivCircle.appendChild(menuHeaderTextSpan)
-menuHeaderDivSquare.appendChild(menuHeaderDivCircle)
-menuHeader.appendChild(menuHeaderDivSquare)
+menuHeader.appendChild(menuHeaderTextSpan)
 menuContainer.appendChild(menuHeader)
 
 // MENU

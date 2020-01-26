@@ -9,6 +9,7 @@ function addBlogPostContent() {
 
     let zeromd = document.createElement("zero-md")
     zeromd.setAttribute("src", "post.md")
+    zeromd.setAttribute("css-urls","[\"../../css/pages/markdown.css\"]")
 
     newPost.appendChild(zeromd)
     blogPostContainer.appendChild(newPost)
