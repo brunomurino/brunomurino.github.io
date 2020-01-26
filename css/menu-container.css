@@ -43,7 +43,7 @@
     border-radius: 50%;
 } */
 
-#menu-container header #divSquare:hover {
+#menu-container header #divCircle:hover {
     cursor: pointer;
 }
 
@@ -67,6 +67,12 @@
 #menu-container ul a {
     padding: 10px;
     font-size: x-large;
+}
+
+#menu-container ul a:hover {
+    background-color: var(--textbox-background);
+    border-radius: 5px;
+    color: var(--textbox-color);
 }
 
 a:visited:not(.textbox) {
